@@ -4,4 +4,6 @@ deployment:
 		- export DP=/home/theremyt/public_html/theregnant/
 		- /bin/cp * $DP
     - chmod ugo+x DP
+    - chmod u+rwx DP
     - chmod ugo+x DP/*
+    - chmod u+rwx DP/*
