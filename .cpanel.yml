@@ -1,8 +1,4 @@
 ---
 deployment:
 	tasks:
-		- export DP=./
-    - /bin/chmod ugo+x DP
-    - /bin/chmod u+rwx DP
-    - /bin/chmod ugo+x DP/*
-    - /bin/chmod u+rwx DP/*
+		- chmod a=rx *
