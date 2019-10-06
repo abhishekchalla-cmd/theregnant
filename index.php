@@ -1,3 +1,11 @@
+<?
+	session_start();
+	$usrext=false;
+	$basicInfo=array();
+	if(isset($_SESSION['user'])){
+		$usrext=$_SESSION['user'];
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -46,13 +54,13 @@
 				.viewer .notice{position:fixed;bottom:0;left:0;width:100%;background:#e6b624;color:#fff;font-size:10px;}
 				.viewer .loader{height:100%;width:100%;vertical-align:middle;display:none;}
 
-			.contactContainer{position:fixed;height:100%;width:100%;top:0;left:0;background:url('icon_files/back.png');display:none;}
-				.contactContainer .dailogBox{padding:20px;background:#fff;box-shadow:5px 5px 10px rgba(0,0,0,0.5);width:300px;}
-				.contactContainer .closer div{width:100px;}
-				.contactContainer .closer a:link,.contactContainer .closer a:visited{color:#fff;}
-				.contactContainer .title{font-family:playfairBold;font-size:20px;color:#e6b624;}
+			.contactContainer,.signin{position:fixed;height:100%;width:100%;top:0;left:0;background:url('icon_files/back.png');display:none;}
+				.contactContainer .dailogBox,.signin .dailogBox{padding:20px;background:#fff;box-shadow:5px 5px 10px rgba(0,0,0,0.5);width:300px;}
+				.contactContainer .closer div,.signin .closer div{width:100px;}
+				.contactContainer .closer a:link,.contactContainer .closer a:visited,.signin .closer a:link,.signin .closer a:visited{color:#fff;}
+				.contactContainer .title,.signin .title{font-family:playfairBold;font-size:20px;color:#e6b624;}
 				.contactContainer table{margin-top:20px;margin-bottom:20px;font-size:12px;}
-				.contactContainer .cleft{font-weight:bold;}
+				.contactContainer .cleft,.signin .cleft{font-weight:bold;}
 
 			.l1,.l2{overflow:hidden;}
 			.l1{display:block;}
@@ -79,7 +87,8 @@
 			}
 
 		</style>
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" id="ajaxScript"></script>
+		<script src="lib1.js" type="text/javascript"></script>
 	</head>
 	<body>
 		<div class="container" align="center">
@@ -90,8 +99,13 @@
 				</div>
 				<div class="optionsBlock" align="center">
 					<a href="#!"><img src="icon_files/search.png" valign="middle" /> Explore</a>&nbsp;&nbsp; | &nbsp;&nbsp;
-					<a href="#!" onclick="viewGallery()">Gallery</a>&nbsp;&nbsp; | &nbsp;&nbsp;
-					<a href="#!" onclick="viewContact()">Contact us</a>
+					<a href="#!" onclick="togglePopup('viewer','table')">Gallery</a>&nbsp;&nbsp; | &nbsp;&nbsp;
+					<a href="#!" onclick="togglePopup('contactContainer','block')">Contact us</a>&nbsp;&nbsp; | &nbsp;&nbsp;
+					<? if($usrext){ ?>
+					<a href="login.php?action=logout">Logout</a>
+					<? }else{ ?>
+					<a href="#!" onclick="togglePopup('signin','block')">Login</a>
+					<? } ?>
 				</div>
 			</div>
 
@@ -121,6 +135,8 @@
 							<a href="#!" onclick="exmore()">&lt; Show less</a>
 						</div>
 					</div>
+
+					<div id="platform"></div>
 				</div>
 			</div>
 
@@ -152,7 +168,7 @@
 
 			<div class="notice" align="center"><div style="margin:10px">The images shown are a virtual representation of the actual sites</div></div>
 
-			<div class="closer" align="center"><a href="#!" onclick="viewGallery()"><div>CLOSE</div></a></div>
+			<div class="closer" align="center"><a href="#!" onclick="togglePopup('viewer','table')"><div>CLOSE</div></a></div>
 		</div>
 
 		<div class="contactContainer" align="center">
@@ -171,7 +187,19 @@
 					</table>
 				</div>
 				<div class="closer" align="center">
-					<a href="#!" onclick="viewContact()"><div>OK</div></a>
+					<a href="#!" onclick="togglePopup('contactContainer','block')"><div>OK</div></a>
+				</div>
+			</div>
+		</div>
+
+		<div class="signin" align="center">
+			<div class="dailogBox" align="center">
+				<div class="btns" align="center">
+					<button id="google-signin">Continue with Google</button><br />
+					<button id="fb-signin">Continue with Facebook</button>
+				</div>
+				<div class="closer" align="center">
+					<a href="#!" onclick="togglePopup('signin','block')"><div>Cancel</div></a>
 				</div>
 			</div>
 		</div>
@@ -238,25 +266,6 @@
 			var last=1;
 			var max=8;
 
-			function viewGallery(){
-				var el=$(".viewer");
-				if(el.css("display")=="table"){
-					el.animate({opacity:0},200,function(){el.css("display","none")});
-					document.body.onkeypress=null;
-				}
-				else{
-					document.body.onkeypress=function(e){
-						alert(e.keyCode);
-						if(e.keyCode==37){prev();}
-						else if(e.keyCode==39){next();}
-						else{}
-					}
-					el.css("display","table");
-					el.css("opacity","0");
-					el.animate({opacity:1},200);
-				}
-			}
-
 			function prev(){
 				if(last<=1){last=max;}
 				else{last--;}
@@ -297,15 +306,18 @@
 				});
 			}
 
-			function viewContact(){
-				ele=$(".contactContainer");
-				if(ele.css("display")=="block"){
-					ele.animate({opacity:0},200,function(){ele.css("display","none");});
+			function togglePopup(ele,display){
+				ele=$("."+ele);
+				state=ele.css("display");
+				if(state==display){
+					ele.animate({opacity:"0"},200,function(){
+						ele.css("display","none");
+					})
 				}
 				else{
-					ele.css("display","block");
+					ele.css("display",display);
 					ele.css("opacity","0");
-					ele.animate({opacity:1},200);
+					ele.animate({opacity:"1"},200);
 				}
 			}
 
