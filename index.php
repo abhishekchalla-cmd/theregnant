@@ -68,7 +68,8 @@
 				.signin .closer{margin-top:20px;}
 
 			#google-signin{border:0;padding:10px;background:#fff;font-family:roboto;font-size:16px;width:254px;color:rgba(0,0,0,0.54);border-radius:5px;box-shadow:1px 1px 2px rgba(0,0,0,0.54);cursor:pointer;}
-			#google-signin img{width:20px;margin-right:10px;}
+			#google-signin img,#fb-signin img{height:20px;margin-right:10px;}
+			#fb-signin{background:#4267B2;padding:10px;border-radius:5px;border:0;color:#fff;font-size:16px;width:254px;box-shadow:1px 1px 2px rgba(0,0,0,0.54);cursor:pointer;}
 			#google-signin,#fb-signin{margin:5px;}
 
 			.l1,.l2{overflow:hidden;}
@@ -204,7 +205,7 @@
 			<div class="dailogBox" align="center">
 				<div class="btns" align="center">
 					<button id="google-signin" onclick="location.href='<? echo $gLoginUrl; ?>'"><img src="g-signin/g-logo.png" valign="middle" /> Continue with Google</button><br />
-					<button id="fb-signin" onclick="location.href='<? echo $fbLoginUrl; ?>'">Continue with Facebook</button>
+					<button id="fb-signin" onclick="location.href='<? echo $fbLoginUrl; ?>'"><img src="fb-signin/f.jpg" valign="middle" /> Continue with Facebook</button>
 				</div>
 				<div class="closer" align="center">
 					<a href="#!" onclick="togglePopup('signin','block')"><div>Cancel</div></a>
