@@ -1,8 +1,13 @@
 <?
-	require_once "config.php";
+	session_start();
 
-	$usrext=(isset($_SESSION['gAccessToken'])===true || isset($_SESSION['fbAccessToken'])===true)?true:false;
-	$loginUrl=$gClient -> createAuthUrl();
+	require_once "g_config.php";
+	require_once "fb_config.php";
+
+	$usrext=(isset($_SESSION['id'])===true)?true:false;
+
+	$gLoginUrl=$gClient -> createAuthUrl();
+	$fbLoginUrl=$fbClient -> getRedirectLoginHelper() -> getLoginUrl("http://localhost/fb-login-complete.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,7 +109,7 @@
 					<a href="#!" onclick="togglePopup('viewer','table')">Gallery</a>&nbsp;&nbsp; | &nbsp;&nbsp;
 					<a href="#!" onclick="togglePopup('contactContainer','block')">Contact us</a>&nbsp;&nbsp; | &nbsp;&nbsp;
 					<? if($usrext){ ?>
-					<a href="login.php?action=logout">Logout</a>
+					<a href="handleToken.php?logout=">Logout</a>
 					<? }else{ ?>
 					<a href="#!" onclick="togglePopup('signin','block')">Login</a>
 					<? } ?>
@@ -117,7 +122,8 @@
 				<div class="overlay" align="left">
 					<div class="l1" style="margin:0;padding:0">
 						<div class="title" align="left">
-							Enrobed in Luxury.<br>Coming Soon
+							<? if($usrext===false){ ?>Enrobed in Luxury.<br>Coming Soon<? }else{ ?>
+							Welcome,<br> <? echo $_SESSION['name']; ?>!<? } ?>
 						</div>
 						<div class="aligner"><div class="para" align="left">
 							Discover a world of exquisite luxury, unparalleled comfort, unforgettable experiences, grand spaces and personalised service! #MyRegnant
@@ -197,8 +203,8 @@
 		<div class="signin" align="center">
 			<div class="dailogBox" align="center">
 				<div class="btns" align="center">
-					<button id="google-signin" onclick="location.href='<? echo $loginUrl; ?>'"><img src="g-signin/g-logo.png" valign="middle" /> Continue with Google</button><br />
-					<div class="fb-login-button" id="fb-signin" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-scope="public_profile, email" data-use-continue-as="false" onlogin="FB.login(loginSuccess)"></div>
+					<button id="google-signin" onclick="location.href='<? echo $gLoginUrl; ?>'"><img src="g-signin/g-logo.png" valign="middle" /> Continue with Google</button><br />
+					<button id="fb-signin" onclick="location.href='<? echo $fbLoginUrl; ?>'">Continue with Facebook</button>
 				</div>
 				<div class="closer" align="center">
 					<a href="#!" onclick="togglePopup('signin','block')"><div>Cancel</div></a>
@@ -206,34 +212,11 @@
 			</div>
 		</div>
 
-		<script src="https://apis.google.com/js/api.js?onload=apiLoad" async defer></script>
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="lib1.js" type="text/javascript"></script>
 
 		<script>
-		  window.fbAsyncInit = function() {
-		    FB.init({
-		      appId      : '520981158465865',
-		      cookie     : true,
-		      xfbml      : true,
-		      version    : 'v4.0'
-		    });
-		      
-		    FB.AppEvents.logPageView();
-		    FBScriptLoad();
 
-		  };
-
-		  (function(d, s, id){
-		     var js, fjs = d.getElementsByTagName(s)[0];
-		     if (d.getElementById(id)) {return;}
-		     js = d.createElement(s); js.id = id;
-		     js.src = "https://connect.facebook.net/en_US/sdk.js";
-		     fjs.parentNode.insertBefore(js, fjs);
-		   }(document, 'script', 'facebook-jssdk'));
-		</script>
-
-		<script>
 			var animate=false;
 			var swich=false;
 			var winwid;
