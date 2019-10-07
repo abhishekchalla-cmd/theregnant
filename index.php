@@ -7,7 +7,7 @@
 	$usrext=(isset($_SESSION['id'])===true)?true:false;
 
 	$gLoginUrl=$gClient -> createAuthUrl();
-	$fbLoginUrl=$fbClient -> getRedirectLoginHelper() -> getLoginUrl("http://localhost/fb-login-complete.php");
+	$fbLoginUrl=$fbClient -> getRedirectLoginHelper() -> getLoginUrl("https://www.theregnant.in/theregnant/fb-login-complete.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
