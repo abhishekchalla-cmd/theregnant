@@ -1,10 +1,8 @@
 <?
-	session_start();
-	$usrext=false;
-	$basicInfo=array();
-	if(isset($_SESSION['user'])){
-		$usrext=$_SESSION['user'];
-	}
+	require_once "config.php";
+
+	$usrext=(isset($_SESSION['gAccessToken'])===true || isset($_SESSION['fbAccessToken'])===true)?true:false;
+	$loginUrl=$gClient -> createAuthUrl();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +16,7 @@
 			@font-face{font-family:montserrat;src:url('fonts/Montserrat-Regular.ttf');}
 			@font-face{font-family:playfair;src:url('fonts/PlayfairDisplay-Regular.ttf');}
 			@font-face{font-family:playfairBold;src:url('fonts/PlayfairDisplay-Bold.ttf');}
+			@font-face{font-family:roboto;src:url('g-signin/roboto/Roboto-Medium.ttf');}
 			body{font-family:montserrat;margin:0;padding:0;font-size:14px;text-transform:uppercase;}
 			a:link,a:visited{text-decoration:none;color:#e6b624;}
 			.container{width:100%;}
@@ -61,6 +60,11 @@
 				.contactContainer .title,.signin .title{font-family:playfairBold;font-size:20px;color:#e6b624;}
 				.contactContainer table{margin-top:20px;margin-bottom:20px;font-size:12px;}
 				.contactContainer .cleft,.signin .cleft{font-weight:bold;}
+				.signin .closer{margin-top:20px;}
+
+			#google-signin{border:0;padding:10px;background:#fff;font-family:roboto;font-size:16px;width:254px;color:rgba(0,0,0,0.54);border-radius:5px;box-shadow:1px 1px 2px rgba(0,0,0,0.54);cursor:pointer;}
+			#google-signin img{width:20px;margin-right:10px;}
+			#google-signin,#fb-signin{margin:5px;}
 
 			.l1,.l2{overflow:hidden;}
 			.l1{display:block;}
@@ -87,8 +91,6 @@
 			}
 
 		</style>
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js" id="ajaxScript"></script>
-		<script src="lib1.js" type="text/javascript"></script>
 	</head>
 	<body>
 		<div class="container" align="center">
@@ -195,14 +197,41 @@
 		<div class="signin" align="center">
 			<div class="dailogBox" align="center">
 				<div class="btns" align="center">
-					<button id="google-signin">Continue with Google</button><br />
-					<button id="fb-signin">Continue with Facebook</button>
+					<button id="google-signin" onclick="location.href='<? echo $loginUrl; ?>'"><img src="g-signin/g-logo.png" valign="middle" /> Continue with Google</button><br />
+					<div class="fb-login-button" id="fb-signin" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-scope="public_profile, email" data-use-continue-as="false" onlogin="FB.login(loginSuccess)"></div>
 				</div>
 				<div class="closer" align="center">
 					<a href="#!" onclick="togglePopup('signin','block')"><div>Cancel</div></a>
 				</div>
 			</div>
 		</div>
+
+		<script src="https://apis.google.com/js/api.js?onload=apiLoad" async defer></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="lib1.js" type="text/javascript"></script>
+
+		<script>
+		  window.fbAsyncInit = function() {
+		    FB.init({
+		      appId      : '520981158465865',
+		      cookie     : true,
+		      xfbml      : true,
+		      version    : 'v4.0'
+		    });
+		      
+		    FB.AppEvents.logPageView();
+		    FBScriptLoad();
+
+		  };
+
+		  (function(d, s, id){
+		     var js, fjs = d.getElementsByTagName(s)[0];
+		     if (d.getElementById(id)) {return;}
+		     js = d.createElement(s); js.id = id;
+		     js.src = "https://connect.facebook.net/en_US/sdk.js";
+		     fjs.parentNode.insertBefore(js, fjs);
+		   }(document, 'script', 'facebook-jssdk'));
+		</script>
 
 		<script>
 			var animate=false;
