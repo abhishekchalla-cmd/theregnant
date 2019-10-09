@@ -3,11 +3,12 @@
 
 	require_once "g_config.php";
 	require_once "fb_config.php";
+	include("location.php");
 
 	$usrext=(isset($_SESSION['id'])===true)?true:false;
 
 	$gLoginUrl=$gClient -> createAuthUrl();
-	$fbLoginUrl=$fbClient -> getRedirectLoginHelper() -> getLoginUrl("https://www.theregnant.in/theregnant/fb-login-complete.php");
+	$fbLoginUrl=$fbClient -> getRedirectLoginHelper() -> getLoginUrl($location . "fb-login-complete.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,7 +104,7 @@
 			
 			<div class="titleBar" align="center">
 				<div class="titleBlock" align="center">
-					<a href="index.html"><img src="images/title2.png" valign="middle" /> The Regnant</a>
+					<a href="index.php"><img src="images/title2.png" valign="middle" /> The Regnant</a>
 				</div>
 				<div class="optionsBlock" align="center">
 					<a href="#!"><img src="icon_files/search.png" valign="middle" /> Explore</a>&nbsp;&nbsp; | &nbsp;&nbsp;
