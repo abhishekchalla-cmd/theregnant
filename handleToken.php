@@ -22,7 +22,7 @@
 			}
 			else{
 				mysqli_query($con,"insert into users (name,email,profilePic) values ('" . $userData['name'] . "','" . $userData['email'] . "','" . $userData['picture'] . "')");
-				setsession(mysqli_fetch_row(mysqli_query($con,"select max(id),name,email,profilePic from users limit 1")));
+				setsession(mysqli_fetch_row(mysqli_query($con,"select id,name,email,profilePic from users where id=(select max(id) from users) limit 1")));
 			}
 		}
 		header("Location: index.php");
