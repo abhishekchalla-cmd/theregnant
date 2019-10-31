@@ -25,7 +25,7 @@
 			@font-face{font-family:roboto;src:url('g-signin/roboto/Roboto-Medium.ttf');}
 			body{font-family:montserrat;margin:0;padding:0;font-size:14px;text-transform:uppercase;}
 			a:link,a:visited{text-decoration:none;color:#e6b624;}
-			.container{width:100%;}
+			.container{width:100%;overflow:hidden;}
 			.titleBar{width:100%;display:table;padding-bottom:10px;}
 				.titleBlock{float:left;height:100%;display:table-cell;margin-left:30px;margin-top:30px;}
 					.titleBlock a:link,.titleBlock a:visited{
@@ -36,16 +36,48 @@
 					.optionsBlock img{width:20px;margin-right:5px;}
 			.gallery{width:100%;height:280px;}
 				.gallery .slideShow{height:100%;background:url('images/home.jpg');background-size:100% auto;background-position:45% 45%;}
-				.gallery .overlay{position:relative;top:-100%;padding-top:50px;padding-bottom:50px;}
+				.gallery .overlay{position:relative;top:-100%;padding-top:70px;padding-bottom:70px;}
 					.gallery .overlay .title,.gallery .overlay .para,.gallery .overlay .link{margin-top:20px;color:#e6b624;margin-bottom:10px;margin-left:50px;}
 					.gallery .overlay .title{margin-top:0;font-family:playfairBold;text-transform:uppercase;font-size:30px;}
 					.para{width:300px;font-size:12px;text-align:left;text-transform:none;display:inline-block;}
 					.gallery a:link,.gallery a:visited{font-size:12px;color:#fff;}
 			.comps{position:relative;top:-10px;}
-				.comps a:link,.comps a:visited{padding:15px;padding-left:40px;padding-right:40px;background:#e6b624;color:#fff;box-shadow:5px 5px 10px rgba(0,0,0,0.5);}
-			.footer{padding-top:50px;background:#e1e1e1;margin-top:-20px;width:100%;padding-bottom:20px;}
+				.comps a:link,.comps a:visited,.form button{border:0;text-transform:uppercase;font-family:montserrat;cursor:pointer;padding:15px;padding-left:40px;padding-right:40px;background:#e6b624;color:#fff;box-shadow:5px 5px 10px rgba(0,0,0,0.5);}
+			.icons,.footer{padding-top:50px;background:#e9e9e9;width:100%;padding-bottom:20px;}
+			.icons{margin-top:-20px;padding-bottom:50px;}
+				.icons .title,.icons .regnantexperience span{margin-top:20px;width:400px;font-family:playfair;text-transform:none;font-size:20px;color:#e6b624;}
+				.icons .iconsPlatter{display:inline-block;margin-top:20px;margin-bottom:20px;}
+				.icons ul{list-style:none;list-type:none;padding:0;margin:0;width:80%;}
+				.icons ul li{float:left;text-align:center;padding:0;margin:0;width:16%;font-size:12px;}
+				.icons ul li img{width:100%;}
+				.icons .readmore{margin-top:10px;margin-bottom:40px;font-size:13px;font-weight:bold;}
+				.icons .regnantexperience p{width:500px;font-size:12px;text-transform:none;}
+
+			.thumbs{padding-top:10px;padding-bottom:10px;width:800px;}
+			.thumbnail{width:33%;font-size:12px;color:#fff;background-size:auto 100%;}
+			.thumbnail .overlay{opacity:0;background:rgba(0,0,0,0.7);height:100%;vertical-align:middle;}
+			.thumbnail .overlay{padding-top:100px;padding-bottom:100px;}
+			#pool .overlay{padding-top:220px;padding-bottom:200px;background-size:100% auto;}
+
+			.reviews{margin-top:20px;display:inline-block;width:100%;padding-top:50px;padding-bottom:50px;background-image:url('images/reviewBack.jpg');background-size:100% auto;}
+			.revContainer{width:550px;color:#fff;padding-left:50px;}
+			.revContainer .img{float:left;height:100%;display:inline-block;}
+			.revContainer .img img{background:#eee;height:150px;width:150px;border-radius:300px;}
+			.revContainer .content{float:right;height:100%;}
+			.revContainer .content p{width:375px;text-align:left;text-transform:none;}
+			.revContainer .name,.revContainer .location{color:#e6b624;}
+
+			.reviews .navigator{display:none;background:#4a4a4a;width:100%;}
+
+			.footer{padding-bottom:50px;}
 				.footer img{width:25px;border:2px solid #e6b624;padding:4px;margin-left:10px;margin-right:10px;}
 				.footer span{font-size:12px;text-transform:none;}
+				.footer .form{margin-bottom:50px;}
+				.footer .title{color:#e6b624;font-weight:bold;}
+				.footer .fields{width:800px;margin-top:20px;}
+				.footer input[type=text],.footer textarea{font-size:12px;font-family:montserrat;}
+				.footer input[type=text]{box-shadow:0px 0px 10px rgba(0,0,0,0.4);border:0;width:40%;margin:1.25%;padding:1.25%;}
+				.footer textarea{width:85%;padding:1.25%;margin:1.25%;box-shadow:0px 0px 10px rgba(0,0,0,0.4);border:0;}
 
 			.viewer{width:100%;height:100%;position:fixed;top:0;left:0;background:linear-gradient(90deg,#1a1a1a,#4a4a4a);display:none;}
 				.viewer .left,.viewer .canvas,.viewer .right{display:table-cell;height:100%;vertical-align:middle;}
@@ -99,7 +131,7 @@
 
 		</style>
 	</head>
-	<body>
+	<body><center>
 		<div class="container" align="center">
 			
 			<div class="titleBar" align="center">
@@ -124,12 +156,11 @@
 				<div class="overlay" align="left">
 					<div class="l1" style="margin:0;padding:0">
 						<div class="title" align="left">
-							<? if($usrext===false){ ?>Enrobed in Luxury.<br>Coming Soon<? }else{ ?>
+							<? if($usrext===false){ ?>
+							Experience the best <br /> banquet hall of <br /> the city.
+							<? }else{ ?>
 							Welcome,<br> <? echo $_SESSION['name']; ?>!<? } ?>
 						</div>
-						<div class="aligner"><div class="para" align="left">
-							Discover a world of exquisite luxury, unparalleled comfort, unforgettable experiences, grand spaces and personalised service! #MyRegnant
-						</div></div>
 						<div class="link" align="left">
 							<a href="#!" onclick="exmore()">Explore more &gt;</a>
 						</div>
@@ -151,19 +182,130 @@
 			</div>
 
 			<div class="comps" align="center">
+				<? if($usrext===false){ ?>
 				<div class="trial" align="center">
 					<a href="mailto:reservations@theregnant.in">Make an enquiry</a>
+				</div>
+				<? }else{ ?>
+				<div class="reservations" align="center">
+					
+				</div>
+				<? } ?>
+			</div>
+
+			<div class="icons" align="center">
+				<div class="title" align="center">Discover a world of exquisite luxury and unparalleled comfort</div>
+				<div class="iconsPlatter" align="center">
+					<ul>
+						<li><img src="icon_files/symbol gym.png" /><br />Gym</li>
+						<li><img src="icon_files/symbol tea room.png" /><br />24/7 Tea Room</li>
+						<li><img src="icon_files/symbol pool.png" /><br />Roof Top Pool</li>
+						<li><img src="icon_files/symbol co working space.png" /><br />Co Working Space</li>
+						<li><img src="icon_files/symbol dining.png" /><br />High Energy Dining Spaces</li>
+						<li><img src="icon_files/symbol event area.png" /><br />Grand Event Spaces</li>
+					</ul>
+				</div>
+				<div class="readmore" align="center"><a href="more.html">Read More &gt;</a></div>
+				<div class="regnantexperience" align="center">
+					<span>The Regnant Experience</span>
+					<br /><br />
+					<p>A tailor-made stay just for you. The hotel offers a wider choice of suites and residences than almost any other in the City of the Nawabs.</p>
+				</div>
+			</div>
+
+			<table class="thumbs" align="center" cellspacing="7" cellpadding="0">
+				<tr>
+					<td class="thumbnail" align="center" id="pool" rowspan="2">
+						<div class="overlay" align="center">
+							Swimming Pool
+							<!-- <div class="suboverlay" align="center">Swimming Pool</div> -->
+						</div>
+					</td>
+					<td class="thumbnail" align="center" id="club">
+						<div class="overlay" align="center">
+							Club Rooms
+							<!-- <div class="suboverlay" align="center">Club Rooms</div> -->
+						</div>
+					</td>
+					<td class="thumbnail" align="center" id="meals">
+						<div class="overlay" align="center">
+							Complimentary Meals
+							<!-- <div class="suboverlay" align="center">Complimentary Meals</div> -->
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="thumbnail" align="center" id="banquet">
+						<div class="overlay" align="center">
+							Banquet
+							<!-- <div class="suboverlay" align="center">Banquet</div> -->
+						</div>
+					</td>
+					<td class="thumbnail" align="center" id="furnish">
+						<div class="overlay" align="center">
+							Furnishing
+							<!-- <div class="suboverlay" align="center">Furnishing</div> -->
+						</div>
+					</td>
+				</tr>
+			</table>
+
+			<div class="reviews" align="center">
+				<table class="reviewLineup" cellspacing="0" cellpadding="0">
+					<tr>
+						<td valign="middle" align="center">
+							<div class="revContainer">
+								<div class="img" align="center"><img src="images/review1.jpg" /></div>
+								<div class="content" align="left">
+									<p>"A tailor-made stay just for you. The hotel offers a wider choice of suites and residences than almost any other in the City of the Nawabs."</p>
+									<span class="name">Mollie Cohen</span><br />
+									<span class="location">London, UK</span>
+								</div>
+							</div>
+						</td>
+						<td valign="middle" align="center">
+							<div class="revContainer">
+								<div class="img" align="center"><img src="images/review1.jpg" /></div>
+								<div class="content" align="left">
+									<p>"They pay very well. :)"</p>
+									<span class="name">Abhishek Challa</span><br />
+									<span class="location">Delhi, India</span>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<div class="navigator">
+					<div class="left" align="center"><a href="javascript:rev_prev()">&lt;</a></div>
+					<div class="right" align="center"><a href="javascript:rev_next()">&gt;</a></div>
 				</div>
 			</div>
 
 			<div class="footer" align="center">
+				<div class="form" align="center">
+					<div class="title" align="center">Request more information</div>
+					<div class="fields" align="center">
+						<input type="text" placeholder="First Name *">
+						<input type="text" placeholder="Last Name *">
+						<input type="text" placeholder="Phone">
+						<input type="text" placeholder="Email *">
+						<textarea placeholder="Message *"></textarea>
+					</div>
+					<div class="submit" align="center"><button onclick="submitForm()">Submit</button></div>
+				</div>
+
 				<a href="https://instagram.com/the.regnant?igshid=1dl93acvuhcp5"><img src="icon_files/insta.png" /></a>
 				<a href="https://www.facebook.com/theregnant/"><img src="icon_files/fb.png" /></a>
 				<a href="https://www.twitter.com/@TheRegnant"><img src="icon_files/twitter.png" /></a>
 				<br /><div style="height:10px"></div>
 				<span style="padding:7px;">Share your Regnant experience and get connected.</span>
+			
 			</div>
+
 		</div>
+
+		<!--POPUPS--->
+
 		<div class="viewer" align="center">
 			<div class="left" align="center"><a href="#!" onclick="prev()"><img src="icon_files/left.png" /></a></div>
 			<div class="canvas" align="center">
@@ -215,7 +357,7 @@
 		</div>
 
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-		<script src="lib1.js" type="text/javascript"></script>
+		<script src="anim_lib.js" type="text/javascript"></script>
 
 		<script>
 
@@ -229,28 +371,51 @@
 					else{next();}
 				}
 			};
+
+			var thumbs=$(".thumbnail");
+			for(ti=0;ti<thumbs.length;ti++){
+				var thumbnail=thumbs.eq(ti);
+				var img="images/thumb_"+thumbnail.attr("id")+".jpg";
+				thumbnail.css("background-image","url('"+img+"')");
+				thumbnail.find(".suboverlay").onmouseover=function(){}
+				thumbnail.find(".overlay")[0].onmouseover=function(){blink(this,"over");};
+				thumbnail.find(".overlay")[0].onmouseout=function(){blink(this,"out");};
+			}
+
+			$(".reviewLineup").css("width",100*Number($(".reviewLineup").find("td").length)+"%");
+
+			function blink(ele,action){
+				ele=$(ele);
+				if(action=="over"){
+					ele.animate({opacity:1},200);
+				}
+				else{
+					ele.animate({opacity:0},200);
+				}
+			}
+
 			$(".canvas").on("click",function(e){vwfunc(e);});
 			var wr=function(){
-				winwid=$(window).width();
-				win=$(window).height();
+				winwid=$(".container").width();
+				win=$(".container").height();
 				var title=$(".titleBar").outerHeight();
 				var footer=$(".footer").outerHeight();
 				var calc=(win-title-footer);
 				var overlay=$(".overlay").outerHeight();
-				var final=(calc<overlay)?overlay:calc;
-				console.log(final);
+//				var final=(calc<overlay)?overlay:calc;
+				final=overlay;
 				if(animate){
 					$(".gallery").animate({height:final+"px"},500);
 					animate=false;
 				}
 				$(".gallery").css("height",final+"px");
 				$(".slideCanvas").css("max-height",win+"px");
-				if(calc>overlay){
-					$(".overlay").css("margin-top",(calc-overlay)/2+"px");
-				}
-				else{
-					$(".overlay").css("margin-top","0px");
-				}
+//				if(calc>overlay){
+//					$(".overlay").css("margin-top",(calc-overlay)/2+"px");
+//				}
+//				else{
+//					$(".overlay").css("margin-top","0px");
+//				}
 
 				var cc=$(".contactContainer");
 				if(cc.css("display")=="block"){
@@ -267,6 +432,10 @@
 					cc.css("display","none");
 					cc.css("visibility","visible");
 				}
+
+				$(".navigator").css("height",$(".reviews").outerHeight()+"px");
+				$(".navigator").css("margin-top",($(".reviews").outerHeight()*-1)+"px");
+
 				var paras=$(".para");
 				var newwidth=(winwid*0.8);
 				for(i=0;i<paras.length;i++){
@@ -371,5 +540,6 @@
 				}
 			}
 		</script>
+		</center>
 	</body>
 </html>
