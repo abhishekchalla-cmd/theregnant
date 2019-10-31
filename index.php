@@ -23,6 +23,7 @@
 			@font-face{font-family:playfair;src:url('fonts/PlayfairDisplay-Regular.ttf');}
 			@font-face{font-family:playfairBold;src:url('fonts/PlayfairDisplay-Bold.ttf');}
 			@font-face{font-family:roboto;src:url('g-signin/roboto/Roboto-Medium.ttf');}
+			@font-face{font-family:bahnschrift;src:url('fonts/bahnschrift.ttf');}
 			body{font-family:montserrat;margin:0;padding:0;font-size:14px;text-transform:uppercase;}
 			a:link,a:visited{text-decoration:none;color:#caa92b;}
 			.container{width:100%;overflow:hidden;}
@@ -34,15 +35,25 @@
 					.titleBlock img{width:50px;margin-right:10px;}
 				.optionsBlock{float:right;color:#caa92b;height:100%;display:table-cell;padding-top:20px;font-size:12px;margin-right:30px;margin-top:30px;}
 					.optionsBlock img{width:20px;margin-right:5px;}
-			.gallery{width:100%;height:280px;}
-				.gallery .slideShow{height:100%;background:url('images/home.jpg');background-size:100% auto;background-position:45% 45%;}
-				.gallery .overlay{position:relative;top:-100%;padding-top:70px;padding-bottom:70px;}
+			.gallery{width:100%;height:400px;}
+				.gallery .overlay{position:relative;padding-top:130px;padding-bottom:130px;background-size:100% auto;}
 					.gallery .overlay .title,.gallery .overlay .para,.gallery .overlay .link{margin-top:20px;color:#caa92b;margin-bottom:10px;margin-left:50px;}
 					.gallery .overlay .title{margin-top:0;font-family:playfairBold;text-transform:uppercase;font-size:30px;}
 					.para{width:300px;font-size:12px;text-align:left;text-transform:none;display:inline-block;}
 					.gallery a:link,.gallery a:visited{font-size:12px;color:#fff;}
-			.comps{position:relative;top:-10px;}
+					.gallery .banner{display:inline-block;width:100%;height:100%;background-size:100% auto;}
+					.bannerSlide{width:33%;}
+			
+			.galleryNav{padding:10px;position:relative;top:-60px;float:left;padding-left:50px;}
+			.galleryNav .cursor,.galleryNav .active_cursor{height:10px;width:10px;border-radius:10px;background:#fff;float:left;margin-right:5px;border:1px solid transparent;}
+			.galleryNav .active_cursor{background:none;border:1px solid #fff;}
+
+			#banner_1{background-image:url('images/home.jpg');}
+			#banner_2{background-image:url('images/thumb_banquet.jpg');background-position:0% 100%;}
+
+			.comps{margin-top:-10px;}
 				.comps a:link,.comps a:visited,.form button,.writeReview button{border:0;text-transform:uppercase;font-family:montserrat;cursor:pointer;padding:15px;padding-left:40px;padding-right:40px;background:#caa92b;color:#fff;box-shadow:5px 5px 10px rgba(0,0,0,0.5);}
+				.comps a:link,.comps a:visited{margin-left:-120px;}
 			.icons,.footer{padding-top:50px;background:#e9e9e9;width:100%;padding-bottom:20px;}
 			.icons{margin-top:-20px;padding-bottom:50px;color:#7a7a7a;}
 				.icons .title,.icons .regnantexperience span{margin-top:20px;width:400px;font-family:playfair;text-transform:none;font-size:23px;color:#caa92b;}
@@ -60,15 +71,19 @@
 			#pool{background-size:100% auto;}
 			#pool .overlay{padding-top:300px;padding-bottom:320px;}
 
-			.reviews{display:inline-block;width:100%;padding-top:50px;padding-bottom:50px;background-image:url('images/reviewBack.jpg');background-size:100% auto;}
+			.reviews{display:block;width:100%;padding-top:50px;padding-bottom:50px;background-image:url('images/reviewBack.jpg');background-size:100% auto;}
 			.revContainer{width:550px;color:#fff;padding-left:50px;}
 			.revContainer .img{float:left;height:100%;display:inline-block;}
-			.revContainer .img img{background:#eee;height:150px;width:150px;border-radius:300px;border:5px solid #caa92b;}
+			.revContainer .img img{background:#eee;height:120px;width:120px;border-radius:300px;border:5px solid #caa92b;}
 			.revContainer .content{float:right;height:100%;}
-			.revContainer .content p{width:375px;text-align:left;text-transform:none;}
-			.revContainer .name,.revContainer .location{color:#caa92b;}
+			.revContainer .content p{width:375px;text-align:left;font-size:14px;text-transform:none;}
+			.revContainer .name,.revContainer .location{color:#caa92b;text-transform:none;}
 
-			.reviews .navigator{display:none;background:#4a4a4a;width:100%;}
+			.navigator{width:55%;}
+			.navigator div{font-size:80px;font-family:bahnschrift;}
+			.navigator .left{float:left;}
+			.navigator .right{float:right;}
+
 			.writeReview button{border-radius:30px;margin-top:10px;margin-bottom:20px;}
 
 			.footer{padding-bottom:50px;}
@@ -78,7 +93,7 @@
 				.footer .title{color:#caa92b;font-weight:bold;}
 				.footer .fields{width:800px;margin-top:20px;}
 				.footer input[type=text],.footer textarea{font-size:12px;font-family:montserrat;}
-				.footer input[type=text]{box-shadow:0px 0px 10px rgba(0,0,0,0.4);border:0;width:40%;margin:1.25%;padding:1.25%;}
+				.footer input[type=text]{box-shadow:0px 0px 10px rgba(0,0,0,0.4);border:0;width:40%;margin:1%;padding:1.25%;}
 				.footer textarea{width:85%;padding:1.25%;margin:1.25%;box-shadow:0px 0px 10px rgba(0,0,0,0.4);border:0;}
 
 			.viewer{width:100%;height:100%;position:fixed;top:0;left:0;background:linear-gradient(90deg,#1a1a1a,#4a4a4a);display:none;}
@@ -153,34 +168,69 @@
 			</div>
 
 			<div class="gallery" align="center">
-				<div class="slideShow" align="center">
-				</div>
-				<div class="overlay" align="left">
-					<div class="l1" style="margin:0;padding:0">
-						<div class="title" align="left">
-							<? if($usrext===false){ ?>
-							Experience the best <br /> banquet hall of <br /> the city.
-							<? }else{ ?>
-							Welcome,<br> <? echo $_SESSION['name']; ?>!<? } ?>
-						</div>
-						<div class="link" align="left">
-							<a href="#!" onclick="exmore()">Explore more &gt;</a>
-						</div>
-					</div>
-					<div class="l2" style="margin:0;padding:0">
-						<div class="aligner">
-							<div class="para" align="left">
-								A tailor-made stay just for you. The hotel offers a wider choice of suites and residences than almost any other in the City of the Nawabs, providing guests with more space and flexibility to accommodate families, state delegations or top business executives. Our beautifully designed suites and residences feature expansive living areas to relax or work. Our acclaimed events team attend to all personal requirements, ensuring bespoke experiences are easily and effortlessly arranged. This admired address will play host to truly dazzling weddings, private events and parties and milestone celebrations.
+				<table cellspacing="0" cellpadding="0" style="width:300%;height:100%;">
+					<tr>
+						<td class="bannerSlide" id="bannder_td_1">
+							<div class="banner" id="banner_1" align="center">
+								<div class="overlay" align="left">
+									<div class="l1" style="margin:0;padding:0">
+										<div class="title" id="title_1" align="left">
+											Experience the best <br /> banquet hall of <br /> the city.
+										</div>
+										<div class="link" align="left">
+											<a href="#!" onclick="exmore()">Explore more &gt;</a>
+										</div>
+									</div>
+									<div class="l2" style="margin:0;padding:0">
+										<div class="aligner">
+											<div class="para" align="left">
+												A tailor-made stay just for you. The hotel offers a wider choice of suites and residences than almost any other in the City of the Nawabs, providing guests with more space and flexibility to accommodate families, state delegations or top business executives. Our beautifully designed suites and residences feature expansive living areas to relax or work. Our acclaimed events team attend to all personal requirements, ensuring bespoke experiences are easily and effortlessly arranged. This admired address will play host to truly dazzling weddings, private events and parties and milestone celebrations.
+											</div>
+										</div>
+
+										<div class="link" align="left">
+											<a href="#!" onclick="exmore()">&lt; Show less</a>
+										</div>
+									</div>
+								</div>
 							</div>
-						</div>
+						</td>
+						<td class="bannerSlide" id="banner_td_2">
+							<div class="banner" id="banner_2" align="center">
+								<div class="overlay" align="left">
+									<div class="l1" style="margin:0;padding:0">
+										<div class="title" id="title_1" align="left">
+											Enrobed in luxury. <br /> Coming Soon.
+										</div>
+										<div class="link" align="left">
+											<a href="#!">Explore more &gt;</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+						<td class="bannerSlide" id="banner_td_3">
+							<div class="banner" id="banner_3" align="center">
+								<div class="overlay" align="left">
+									<div class="l1" style="margin:0;padding:0">
+										<div class="title" id="title_1" align="left">
+											Enrobed in luxury. <br /> Coming Soon.
+										</div>
+										<div class="link" align="left">
+											<a href="#!">Explore more &gt;</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
 
-						<div class="link" align="left">
-							<a href="#!" onclick="exmore()">&lt; Show less</a>
-						</div>
-					</div>
-
-					<div id="platform"></div>
-				</div>
+			<div class="galleryNav" align="center">
+				<a href="#!" onclick="bannerToggle(1)"><div class="active_cursor" id="cursor1"></div></a>
+				<a href="#!" onclick="bannerToggle(2)"><div class="cursor" id="cursor2"></div></a>
+				<a href="#!" onclick="bannerToggle(3)"><div class="cursor" id="cursor3"></div></a>
 			</div>
 
 			<div class="comps" align="center">
@@ -273,18 +323,19 @@
 							<div class="revContainer">
 								<div class="img" align="center"><img src="images/review2.jpg" /></div>
 								<div class="content" align="left">
-									<p>"They pay very well. :)"</p>
-									<span class="name">Abhishek Challa</span><br />
+									<p>"Enrobed in luxury. Amazing experience."</p>
+									<span class="name">Rishabh Kakkar</span><br />
 									<span class="location">Delhi, India</span>
 								</div>
 							</div>
 						</td>
 					</tr>
 				</table>
-				<div class="navigator">
-					<div class="left" align="center"><a href="javascript:rev_prev()">&lt;</a></div>
-					<div class="right" align="center"><a href="javascript:rev_next()">&gt;</a></div>
-				</div>
+			</div>
+
+			<div class="navigator">
+				<div class="left" align="center"><a href="javascript:rev_prev()">&lt;</a></div>
+				<div class="right" align="center"><a href="javascript:rev_next()">&gt;</a></div>
 			</div>
 
 			<div class="footer" align="center">
@@ -403,7 +454,7 @@
 			$(".canvas").on("click",function(e){vwfunc(e);});
 			var wr=function(){
 				winwid=$(".container").width();
-				win=$(".container").height();
+				win=$(window).height();
 				var title=$(".titleBar").outerHeight();
 				var footer=$(".footer").outerHeight();
 				var calc=(win-title-footer);
@@ -434,13 +485,16 @@
 					cc.css("display","block");
 					var contact=$(".dailogBox");
 					var calc2=(win-contact.outerHeight())/2;
+					console.log(calc2);
 					contact.css("margin-top",calc2+"px");
 					cc.css("display","none");
 					cc.css("visibility","visible");
 				}
 
-				$(".navigator").css("height",$(".reviews").outerHeight()+"px");
-				$(".navigator").css("margin-top",($(".reviews").outerHeight()*-1)+"px");
+				var revnav=$(".navigator");
+				revnav.css("margin-top",$(".reviews").outerHeight()*(-1)+"px");
+				revnav.css("height",$(".reviews").outerHeight()+"px");
+				revnav.find("div").css("padding-top",$(".reviews").outerHeight()/2-50+"px");
 
 				var paras=$(".para");
 				var newwidth=(winwid*0.8);
@@ -522,13 +576,12 @@
 			}
 
 			function exmore(lin){
-				var p1=$(".l1");
-				var p2=$(".l2");
+				var p1=$("#banner_1").find(".l1");
+				var p2=$("#banner_1").find(".l2");
 				if(p1.css("display")=="block"){
 					pack(p1,function(){
 						p2.css("margin-left","-800px");
 						p2.css("display","block");
-						console.log("HERE:"+$(".gallery").outerHeight());
 						animate=true;
 						wr();
 						unpack(p2,null);
@@ -544,6 +597,35 @@
 						unpack(p1);
 					});
 				}
+			}
+
+			var cursor=1;
+			var max=3;
+
+			function bannerToggle(point=(((cursor+1)%max != 0)?(cursor+1)%max:3)) {
+				cursor=point;
+				console.log(cursor);
+				$(".active_cursor").attr("class","cursor");
+				$("#cursor"+cursor).attr("class","active_cursor");
+				var table=$(".gallery").find("table");
+				table.animate({marginLeft:((1-cursor)*100)+"%"});
+			}
+
+			var revcursor=1;
+			var max=2;
+			function rev_prev(){
+				if(revcursor==1){revcursor=max;}
+				else{revcursor--;}
+				moveReview();
+			}
+			function rev_next(){
+				if(revcursor==max){revcursor=1;}
+				else{revcursor++;}
+				moveReview();
+			}
+			function moveReview(){
+				var rev=$(".reviewLineup");
+				rev.animate({marginLeft:(1-revcursor)*100+"%"},500);
 			}
 		</script>
 		</center>
