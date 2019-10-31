@@ -24,56 +24,58 @@
 			@font-face{font-family:playfairBold;src:url('fonts/PlayfairDisplay-Bold.ttf');}
 			@font-face{font-family:roboto;src:url('g-signin/roboto/Roboto-Medium.ttf');}
 			body{font-family:montserrat;margin:0;padding:0;font-size:14px;text-transform:uppercase;}
-			a:link,a:visited{text-decoration:none;color:#e6b624;}
+			a:link,a:visited{text-decoration:none;color:#caa92b;}
 			.container{width:100%;overflow:hidden;}
 			.titleBar{width:100%;display:table;padding-bottom:10px;}
 				.titleBlock{float:left;height:100%;display:table-cell;margin-left:30px;margin-top:30px;}
 					.titleBlock a:link,.titleBlock a:visited{
-						font-family:playfair;color:#e6b624;font-size:25px;text-transform:uppercase;
+						font-family:playfair;color:#caa92b;font-size:25px;text-transform:uppercase;
 					}
 					.titleBlock img{width:50px;margin-right:10px;}
-				.optionsBlock{float:right;color:#e6b624;height:100%;display:table-cell;padding-top:20px;font-size:12px;margin-right:30px;margin-top:30px;}
+				.optionsBlock{float:right;color:#caa92b;height:100%;display:table-cell;padding-top:20px;font-size:12px;margin-right:30px;margin-top:30px;}
 					.optionsBlock img{width:20px;margin-right:5px;}
 			.gallery{width:100%;height:280px;}
 				.gallery .slideShow{height:100%;background:url('images/home.jpg');background-size:100% auto;background-position:45% 45%;}
 				.gallery .overlay{position:relative;top:-100%;padding-top:70px;padding-bottom:70px;}
-					.gallery .overlay .title,.gallery .overlay .para,.gallery .overlay .link{margin-top:20px;color:#e6b624;margin-bottom:10px;margin-left:50px;}
+					.gallery .overlay .title,.gallery .overlay .para,.gallery .overlay .link{margin-top:20px;color:#caa92b;margin-bottom:10px;margin-left:50px;}
 					.gallery .overlay .title{margin-top:0;font-family:playfairBold;text-transform:uppercase;font-size:30px;}
 					.para{width:300px;font-size:12px;text-align:left;text-transform:none;display:inline-block;}
 					.gallery a:link,.gallery a:visited{font-size:12px;color:#fff;}
 			.comps{position:relative;top:-10px;}
-				.comps a:link,.comps a:visited,.form button{border:0;text-transform:uppercase;font-family:montserrat;cursor:pointer;padding:15px;padding-left:40px;padding-right:40px;background:#e6b624;color:#fff;box-shadow:5px 5px 10px rgba(0,0,0,0.5);}
+				.comps a:link,.comps a:visited,.form button,.writeReview button{border:0;text-transform:uppercase;font-family:montserrat;cursor:pointer;padding:15px;padding-left:40px;padding-right:40px;background:#caa92b;color:#fff;box-shadow:5px 5px 10px rgba(0,0,0,0.5);}
 			.icons,.footer{padding-top:50px;background:#e9e9e9;width:100%;padding-bottom:20px;}
-			.icons{margin-top:-20px;padding-bottom:50px;}
-				.icons .title,.icons .regnantexperience span{margin-top:20px;width:400px;font-family:playfair;text-transform:none;font-size:20px;color:#e6b624;}
+			.icons{margin-top:-20px;padding-bottom:50px;color:#7a7a7a;}
+				.icons .title,.icons .regnantexperience span{margin-top:20px;width:400px;font-family:playfair;text-transform:none;font-size:23px;color:#caa92b;}
 				.icons .iconsPlatter{display:inline-block;margin-top:20px;margin-bottom:20px;}
-				.icons ul{list-style:none;list-type:none;padding:0;margin:0;width:80%;}
+				.icons ul{list-style:none;list-type:none;padding:0;margin:0;width:70%;}
 				.icons ul li{float:left;text-align:center;padding:0;margin:0;width:16%;font-size:12px;}
 				.icons ul li img{width:100%;}
 				.icons .readmore{margin-top:10px;margin-bottom:40px;font-size:13px;font-weight:bold;}
-				.icons .regnantexperience p{width:500px;font-size:12px;text-transform:none;}
+				.icons .regnantexperience p{width:500px;font-size:14px;text-transform:none;}
 
-			.thumbs{padding-top:10px;padding-bottom:10px;width:800px;}
+			.thumbs{padding-bottom:0px;width:100%;}
 			.thumbnail{width:33%;font-size:12px;color:#fff;background-size:auto 100%;}
 			.thumbnail .overlay{opacity:0;background:rgba(0,0,0,0.7);height:100%;vertical-align:middle;}
-			.thumbnail .overlay{padding-top:100px;padding-bottom:100px;}
-			#pool .overlay{padding-top:220px;padding-bottom:200px;background-size:100% auto;}
+			.thumbnail .overlay{padding-top:150px;padding-bottom:150px;}
+			#pool{background-size:100% auto;}
+			#pool .overlay{padding-top:300px;padding-bottom:320px;}
 
-			.reviews{margin-top:20px;display:inline-block;width:100%;padding-top:50px;padding-bottom:50px;background-image:url('images/reviewBack.jpg');background-size:100% auto;}
+			.reviews{display:inline-block;width:100%;padding-top:50px;padding-bottom:50px;background-image:url('images/reviewBack.jpg');background-size:100% auto;}
 			.revContainer{width:550px;color:#fff;padding-left:50px;}
 			.revContainer .img{float:left;height:100%;display:inline-block;}
-			.revContainer .img img{background:#eee;height:150px;width:150px;border-radius:300px;}
+			.revContainer .img img{background:#eee;height:150px;width:150px;border-radius:300px;border:5px solid #caa92b;}
 			.revContainer .content{float:right;height:100%;}
 			.revContainer .content p{width:375px;text-align:left;text-transform:none;}
-			.revContainer .name,.revContainer .location{color:#e6b624;}
+			.revContainer .name,.revContainer .location{color:#caa92b;}
 
 			.reviews .navigator{display:none;background:#4a4a4a;width:100%;}
+			.writeReview button{border-radius:30px;margin-top:10px;margin-bottom:20px;}
 
 			.footer{padding-bottom:50px;}
-				.footer img{width:25px;border:2px solid #e6b624;padding:4px;margin-left:10px;margin-right:10px;}
+				.footer img{width:25px;border:2px solid #caa92b;padding:4px;margin-left:10px;margin-right:10px;}
 				.footer span{font-size:12px;text-transform:none;}
 				.footer .form{margin-bottom:50px;}
-				.footer .title{color:#e6b624;font-weight:bold;}
+				.footer .title{color:#caa92b;font-weight:bold;}
 				.footer .fields{width:800px;margin-top:20px;}
 				.footer input[type=text],.footer textarea{font-size:12px;font-family:montserrat;}
 				.footer input[type=text]{box-shadow:0px 0px 10px rgba(0,0,0,0.4);border:0;width:40%;margin:1.25%;padding:1.25%;}
@@ -88,14 +90,14 @@
 				.viewer .closer{position:fixed;top:20px;right:20px;padding:10px;font-size:15px;font-weight:bold;}
 				.closer a:link,.closer a:visited{color:#2a2a2a;}
 				.closer div,.contactContainer .closer div{padding:15px;border-radius:30px;background:#9a9a9a;}
-				.viewer .notice{position:fixed;bottom:0;left:0;width:100%;background:#e6b624;color:#fff;font-size:10px;}
+				.viewer .notice{position:fixed;bottom:0;left:0;width:100%;background:#caa92b;color:#fff;font-size:10px;}
 				.viewer .loader{height:100%;width:100%;vertical-align:middle;display:none;}
 
 			.contactContainer,.signin{position:fixed;height:100%;width:100%;top:0;left:0;background:url('icon_files/back.png');display:none;}
 				.contactContainer .dailogBox,.signin .dailogBox{padding:20px;background:#fff;box-shadow:5px 5px 10px rgba(0,0,0,0.5);width:300px;}
 				.contactContainer .closer div,.signin .closer div{width:100px;}
 				.contactContainer .closer a:link,.contactContainer .closer a:visited,.signin .closer a:link,.signin .closer a:visited{color:#fff;}
-				.contactContainer .title,.signin .title{font-family:playfairBold;font-size:20px;color:#e6b624;}
+				.contactContainer .title,.signin .title{font-family:playfairBold;font-size:20px;color:#caa92b;}
 				.contactContainer table{margin-top:20px;margin-bottom:20px;font-size:12px;}
 				.contactContainer .cleft,.signin .cleft{font-weight:bold;}
 				.signin .closer{margin-top:20px;}
@@ -217,7 +219,7 @@
 				<tr>
 					<td class="thumbnail" align="center" id="pool" rowspan="2">
 						<div class="overlay" align="center">
-							Swimming Pool
+							Rooftop Pool
 							<!-- <div class="suboverlay" align="center">Swimming Pool</div> -->
 						</div>
 					</td>
@@ -243,12 +245,16 @@
 					</td>
 					<td class="thumbnail" align="center" id="furnish">
 						<div class="overlay" align="center">
-							Furnishing
+							Executive Rooms
 							<!-- <div class="suboverlay" align="center">Furnishing</div> -->
 						</div>
 					</td>
 				</tr>
 			</table>
+
+			<div class="writeReview" align="center">
+				<button onclick="writeReview()">Write a Review</button>
+			</div>
 
 			<div class="reviews" align="center">
 				<table class="reviewLineup" cellspacing="0" cellpadding="0">
@@ -265,7 +271,7 @@
 						</td>
 						<td valign="middle" align="center">
 							<div class="revContainer">
-								<div class="img" align="center"><img src="images/review1.jpg" /></div>
+								<div class="img" align="center"><img src="images/review2.jpg" /></div>
 								<div class="content" align="left">
 									<p>"They pay very well. :)"</p>
 									<span class="name">Abhishek Challa</span><br />
