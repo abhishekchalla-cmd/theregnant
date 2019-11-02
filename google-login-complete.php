@@ -1,9 +1,9 @@
 <?
 	require_once "g_config.php";
 
+	$token="";
 	if(isset($_GET['code'])){
 		$token = $gClient -> fetchAccessTokenWithAuthCode($_GET['code']);
-		//$_SESSION['gAccessToken']=$token;
 	}
 
 	$oAuth = new Google_Service_Oauth2($gClient);

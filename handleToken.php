@@ -13,7 +13,7 @@
 	$err=true;
 
 	if(isset($_GET['logout'])!==true){
-		if(isset($_SESSION['id'])===false){
+		if(isset($_SESSION['id'])===false && isset($userData['email'])===true){
 			$q=mysqli_query($con,"select id,name,email,profilePic from users where email='" . $userData['email'] . "' limit 1");
 			if(mysqli_num_rows($q)>0){
 				$r=mysqli_fetch_row($q);

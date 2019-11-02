@@ -1,14 +1,6 @@
 <?
 	session_start();
-
-	require_once "g_config.php";
-	require_once "fb_config.php";
-	include("location.php");
-
 	$usrext=(isset($_SESSION['id'])===true)?true:false;
-
-	$gLoginUrl=$gClient -> createAuthUrl();
-	$fbLoginUrl=$fbClient -> getRedirectLoginHelper() -> getLoginUrl($location . "fb-login-complete.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -160,7 +152,7 @@
 					<a href="#!" onclick="togglePopup('viewer','table')">Gallery</a>&nbsp;&nbsp; | &nbsp;&nbsp;
 					<a href="#!" onclick="togglePopup('contactContainer','block')">Contact us</a>&nbsp;&nbsp; | &nbsp;&nbsp;
 					<? if($usrext){ ?>
-					<a href="handleToken.php?logout=">Logout</a>
+					<a href="logout.php">Logout</a>
 					<? }else{ ?>
 					<a href="#!" onclick="togglePopup('signin','block')">Login</a>
 					<? } ?>
@@ -404,8 +396,8 @@
 		<div class="signin" align="center">
 			<div class="dailogBox" align="center">
 				<div class="btns" align="center">
-					<button id="google-signin" onclick="location.href='<? echo $gLoginUrl; ?>'"><img src="g-signin/g-logo.png" valign="middle" /> Continue with Google</button><br />
-					<button id="fb-signin" onclick="location.href='<? echo $fbLoginUrl; ?>'"><img src="fb-signin/f.jpg" valign="middle" /> Continue with Facebook</button>
+					<button id="google-signin" onclick="location.href='google_lr.php'"><img src="g-signin/g-logo.png" valign="middle" /> Continue with Google</button><br />
+					<button id="fb-signin" onclick="location.href='fb_lr.php'"><img src="fb-signin/f.jpg" valign="middle" /> Continue with Facebook</button>
 				</div>
 				<div class="closer" align="center">
 					<a href="#!" onclick="togglePopup('signin','block')"><div>Cancel</div></a>
@@ -428,6 +420,18 @@
 					else{next();}
 				}
 			};
+
+			var userinfo={};
+
+			<? if($usrext===true){
+			?>
+			userinfo.name="<? echo $_SESSION['name']; ?>";
+			userinfo.email="<? echo $_SESSION['email']; ?>";
+			userinfo.pic="<? echo $_SESSION['profilePic']; ?>";
+			userinfo.id=<? echo $_SESSION['id']; ?>;
+			<?
+				}
+			?>
 
 			var thumbs=$(".thumbnail");
 			for(ti=0;ti<thumbs.length;ti++){
