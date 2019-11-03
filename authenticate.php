@@ -1,4 +1,3 @@
-<pre>
 <?
 	session_start();
 
@@ -6,6 +5,11 @@
 	$userData="";
 	$con="";
 	$web=false;
+
+	function createNewToken($id){
+		$num=rand($id*10000000000000000,($id+1)*10000000000000000);
+		return $num;
+	}
 
 	//* RETRIEVING DATA FROM VENDORS *//
 
@@ -118,8 +122,22 @@
 			header("Location: index.php");
 		}
 		else{
+			$tokenQ=mysqli_query($con,"select * from tokens where uid=" . $userData['id']);
+			
+			if(mysqli_num_rows($tokenQ)>=5){
 
+				$time=time();$id=0;
+				for($i=0;$i<mysqli_num_rows($tokenQ);$i++){
+					$row=mysqli_fetch_assoc($tokenQ);
+					if($row['time']<$time){$time=$row['time'];$id=$row['id'];}
+				}
+				mysqli_query($con,"delete from tokens where id=" . $id);
+
+			}
+
+			$randToken=createNewToken($userData['id']);
+			mysqli_query($con,"insert into tokens (uid,token,time) values (" . $userData['id'] . ",'" . $randToken . "','" . time() . "')");
+			echo $randToken . "<>" . $userData['name'] . "<>" . $userData['profilePic'] . "<>" . $userData['email'];
 		}
 	}
 ?>
-</pre>
