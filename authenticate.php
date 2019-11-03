@@ -55,7 +55,7 @@
 						$userData=$oAuth->userinfo->get();
 						if($userData!=""){$success=true;}
 					}
-					catch(GoogleServiceException $e){}
+					catch(Google_Service_Exception $e){}
 				}
 			}
 			else{
