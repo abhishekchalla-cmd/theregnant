@@ -51,7 +51,7 @@
 					require_once "g_config.php";
 					try{
 						$token=$gClient -> fetchAccessTokenWithAuthCode($_GET['code']);
-						$oAuth=new Google_Service_OAuth2($gClient);
+						$oAuth=new Google_Service_Oauth2($gClient);
 						$userData=$oAuth->userinfo->get();
 						if($userData!=""){$success=true;}
 					}
