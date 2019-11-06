@@ -146,6 +146,7 @@
 				.viewer .canvas img{width:100%;}
 				.footer{padding-top:60px;padding-bottom:30px;}
 				.l1, .l2{width:100%;}
+				.icons .title{width:80%;}
 				.icons ul{width:70%;}
 				.icons ul li{width:33%;}
 				.icons .regnantexperience p{width:80%;}
@@ -182,9 +183,9 @@
 					<a href="index.php"><img src="images/title2.png" valign="middle" /> The Regnant</a>
 				</div>
 				<div class="optionsBlock" align="center">
-					<a href="#!"><img src="icon_files/search.png" valign="middle" /> Explore</a>&nbsp;&nbsp; | &nbsp;&nbsp;
-					<a href="#!" onclick="togglePopup('viewer','table')">Gallery</a>&nbsp;&nbsp; | &nbsp;&nbsp;
-					<a href="#!" onclick="togglePopup('contactContainer','block')">Contact us</a>&nbsp;&nbsp; | &nbsp;&nbsp;
+					<a href="#!"><img src="icon_files/search.png" valign="middle" /> Explore</a>&nbsp; | &nbsp;
+					<a href="#!" onclick="togglePopup('viewer','table')">Gallery</a>&nbsp; | &nbsp;
+					<a href="#!" onclick="togglePopup('contactContainer','block')">Contact us</a>&nbsp; | &nbsp;
 					<? if($usrext){ ?>
 					<a href="logout.php">Logout</a>
 					<? }else{ ?>
