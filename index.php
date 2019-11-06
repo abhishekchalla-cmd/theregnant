@@ -28,7 +28,7 @@
 				.optionsBlock{float:right;color:#caa92b;height:100%;display:table-cell;padding-top:20px;font-size:12px;margin-right:30px;margin-top:30px;}
 					.optionsBlock img{width:20px;margin-right:5px;}
 			.gallery{width:100%;height:400px;}
-				.gallery .overlay{position:relative;padding-top:130px;padding-bottom:130px;background-size:100% auto;}
+				.gallery .overlay{position:relative;padding-top:130px;padding-bottom:130px;}
 					.gallery .overlay .title,.gallery .overlay .para,.gallery .overlay .link{margin-top:20px;color:#caa92b;margin-bottom:10px;margin-left:50px;}
 					.gallery .overlay .title{margin-top:0;font-family:playfairBold;text-transform:uppercase;font-size:30px;}
 					.para{width:300px;font-size:12px;text-align:left;text-transform:none;display:inline-block;}
@@ -36,16 +36,16 @@
 					.gallery .banner{display:inline-block;width:100%;height:100%;background-size:100% auto;}
 					.bannerSlide{width:33%;}
 			
-			.galleryNav{padding:10px;position:relative;top:-60px;float:left;padding-left:50px;}
+			.galleryNav{padding:10px;position:relative;top:-60px;display:inline-block;}
 			.galleryNav .cursor,.galleryNav .active_cursor{height:10px;width:10px;border-radius:10px;background:#fff;float:left;margin-right:5px;border:1px solid transparent;}
 			.galleryNav .active_cursor{background:none;border:1px solid #fff;}
 
-			#banner_1{background-image:url('images/home.jpg');}
-			#banner_2{background-image:url('images/thumb_banquet.jpg');background-position:0% 100%;}
+			#banner_2{background-image:url('images/home.jpg');background-size:auto 120%;}
+			#banner_1{background-image:url('images/thumb_banquet.jpg');background-position:0% 100%;}
+			#banner_3{background:#1a1a1a;}
 
-			.comps{margin-top:-10px;}
+			.comps{margin-top:-35px;}
 				.comps a:link,.comps a:visited,.form button,.writeReview button{border:0;text-transform:uppercase;font-family:montserrat;cursor:pointer;padding:15px;padding-left:40px;padding-right:40px;background:#caa92b;color:#fff;box-shadow:5px 5px 10px rgba(0,0,0,0.5);}
-				.comps a:link,.comps a:visited{margin-left:-120px;}
 			.icons,.footer{padding-top:50px;background:#e9e9e9;width:100%;padding-bottom:20px;}
 			.icons{margin-top:-20px;padding-bottom:50px;color:#7a7a7a;}
 				.icons .title,.icons .regnantexperience span{margin-top:20px;width:400px;font-family:playfair;text-transform:none;font-size:23px;color:#caa92b;}
@@ -63,15 +63,22 @@
 			#pool{background-size:100% auto;}
 			#pool .overlay{padding-top:300px;padding-bottom:320px;}
 
+			.shortGallery{width:100%;display:none;margin-top:15px;}
+			.shortGallery .picture{background-size:100% auto;background-position:0% 20%;width:10%;box-shadow:2px 2px 10px rgba(0,0,0,0.8);margin:5px;float:left;}
+			.shortGallery .rack{width:600%;}
+			.shortGallery .picture .info{text-align:left;text-transform:none;background:rgba(0,0,0,0.5);color:#fff;padding:10px;}
+			.shortGallery .picture .info .title{font-weight:bold;font-size:18px;}
+			.shortGallery .picture .info .description{font-size:12px;}
+
 			.reviews{display:block;width:100%;padding-top:50px;padding-bottom:50px;background-image:url('images/reviewBack.jpg');background-size:100% auto;}
-			.revContainer{width:550px;color:#fff;padding-left:50px;}
+			.revContainer{width:550px;color:#fff;display:inline-block;}
 			.revContainer .img{float:left;height:100%;display:inline-block;}
-			.revContainer .img img{background:#eee;height:120px;width:120px;border-radius:300px;border:5px solid #caa92b;}
-			.revContainer .content{float:right;height:100%;}
+			.revContainer .img img{background:#eee;height:auto;width:120px;border-radius:300px;border:5px solid #caa92b;}
+			.revContainer .content{float:right;height:100%;display:inline-block;text-align:left;}
 			.revContainer .content p{width:375px;text-align:left;font-size:14px;text-transform:none;}
 			.revContainer .name,.revContainer .location{color:#caa92b;text-transform:none;}
 
-			.navigator{width:55%;}
+			.navigator{width:95%;}
 			.navigator div{font-size:80px;font-family:bahnschrift;}
 			.navigator .left{float:left;}
 			.navigator .right{float:right;}
@@ -119,7 +126,14 @@
 			.l2{display:none;}
 			.gallery .overlay .aligner{padding:0;margin:0;text-align:left;}
 
-			@media screen and (max-width: 632px){
+			@media only screen and (max-width: 632px){
+				.reviews{background-size:auto 150%;background-position:50% 0%;}
+				.revContainer{display:block;width:70%;}
+				.revContainer img{width:50px;height:auto;}
+				.revContainer .img{display:table;width:100%;height:auto;}
+				.revContainer .content{display:table;width:100%;height:auto;text-align:center;}
+				.revContainer .content p{text-align:center;width:100%;}
+
 				.gallery .overlay .aligner{text-align:center;}
 				.titleBlock{width:100%;margin-left:0;margin-right:0;margin-bottom:-15px;}
 				.titleBlock img{margin-right:0px;}
@@ -132,10 +146,30 @@
 				.viewer .canvas img{width:100%;}
 				.footer{padding-top:60px;padding-bottom:30px;}
 				.l1, .l2{width:100%;}
+				.icons ul{width:70%;}
+				.icons ul li{width:33%;}
+				.icons .regnantexperience p{width:80%;}
+				.footer .fields {width:100%;}
+				.fields input[type=text]{padding:10px;width:80%;}
+				.fields textarea{width:80%;padding:10px;height:80px;}
+				.thumbs{display:none;}
+				.shortGallery{display:inline-block;}
 			}
 
-			@media screen and (max-width: 841px){
+			@media only screen and (min-width:632px) and (max-width: 841px){
 				.gallery .slideShow {background-size:auto 100%;}
+				.icons ul{width:90%;}
+				.thumbs{display:none;}
+				.shortGallery{display:inline-block;}
+				.reviews{background-size:100% auto;}
+				.revContainer{width:70%;smargin:0;}
+				.revContainer .img{width:40%;}
+				.revContainer .content{width:55%;}
+				.revContainer .img img{width:auto;height:170px;}
+				.revContainer .content p{width:100%;}
+				.footer .fields {width:100%;}
+				.fields input[type=text]{padding:10px;width:80%;}
+				.fields textarea{width:80%;padding:10px;height:80px;}
 			}
 
 		</style>
@@ -159,10 +193,10 @@
 				</div>
 			</div>
 
-			<div class="gallery" align="center">
+			<div class="gallery" align="center" onmouseover="pauseGallery('over')" onmouseout="pauseGallery('out')">
 				<table cellspacing="0" cellpadding="0" style="width:300%;height:100%;">
 					<tr>
-						<td class="bannerSlide" id="bannder_td_1">
+						<td class="bannerSlide" id="banner_td_1">
 							<div class="banner" id="banner_1" align="center">
 								<div class="overlay" align="left">
 									<div class="l1" style="margin:0;padding:0">
@@ -257,7 +291,8 @@
 				</div>
 			</div>
 
-			<table class="thumbs" align="center" cellspacing="7" cellpadding="0">
+			<center>
+				<table class="thumbs" align="center" cellspacing="7" cellpadding="0">
 				<tr>
 					<td class="thumbnail" align="center" id="pool" rowspan="2">
 						<div class="overlay" align="center">
@@ -294,6 +329,19 @@
 				</tr>
 			</table>
 
+				<div class="shortGallery" align="center">
+					<div class="rack" align="center">
+						<div class="picture" align="center">
+							<div class="spacer"></div>
+							<div class="info">
+								<span class="title"></span>
+								<span class="description"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</center>
+
 			<div class="writeReview" align="center">
 				<button onclick="writeReview()">Write a Review</button>
 			</div>
@@ -304,7 +352,7 @@
 						<td valign="middle" align="center">
 							<div class="revContainer">
 								<div class="img" align="center"><img src="images/review1.jpg" /></div>
-								<div class="content" align="left">
+								<div class="content">
 									<p>"A tailor-made stay just for you. The hotel offers a wider choice of suites and residences than almost any other in the City of the Nawabs."</p>
 									<span class="name">Mollie Cohen</span><br />
 									<span class="location">London, UK</span>
@@ -433,18 +481,6 @@
 				}
 			?>
 
-			var thumbs=$(".thumbnail");
-			for(ti=0;ti<thumbs.length;ti++){
-				var thumbnail=thumbs.eq(ti);
-				var img="images/thumb_"+thumbnail.attr("id")+".jpg";
-				thumbnail.css("background-image","url('"+img+"')");
-				thumbnail.find(".suboverlay").onmouseover=function(){}
-				thumbnail.find(".overlay")[0].onmouseover=function(){blink(this,"over");};
-				thumbnail.find(".overlay")[0].onmouseout=function(){blink(this,"out");};
-			}
-
-			$(".reviewLineup").css("width",100*Number($(".reviewLineup").find("td").length)+"%");
-
 			function blink(ele,action){
 				ele=$(ele);
 				if(action=="over"){
@@ -455,6 +491,9 @@
 				}
 			}
 
+			var images=['pool','club','meals','banquet','furnish'];
+			var titles=['Rooftop Pool','Club Rooms','Complimentary Meals','Banquet','Executive Rooms'];
+
 			$(".canvas").on("click",function(e){vwfunc(e);});
 			var wr=function(){
 				winwid=$(".container").width();
@@ -462,7 +501,20 @@
 				var title=$(".titleBar").outerHeight();
 				var footer=$(".footer").outerHeight();
 				var calc=(win-title-footer);
-				var overlay=$(".overlay").outerHeight();
+				var overlayEle=$("#banner_td_1").find(".overlay");
+				var overlay=overlayEle.outerHeight();
+				var owidth=overlayEle.outerWidth();
+				var all=$(".gallery").find(".banner");
+				if((owidth/overlay)<1.77){
+					for(ii=0;ii<all.length;ii++){
+						all.eq(ii).css("background-size","auto 100%");
+					}
+				}
+				else{
+					for(ii=0;ii<all.length;ii++){
+						all.eq(ii).css("background-size","100% auto");
+					}
+				}
 //				var final=(calc<overlay)?overlay:calc;
 				final=overlay;
 				if(animate){
@@ -489,7 +541,6 @@
 					cc.css("display","block");
 					var contact=$(".dailogBox");
 					var calc2=(win-contact.outerHeight())/2;
-					console.log(calc2);
 					contact.css("margin-top",calc2+"px");
 					cc.css("display","none");
 					cc.css("visibility","visible");
@@ -506,6 +557,44 @@
 					paras.eq(i).css("width",((newwidth>300)?300:newwidth)+"px");
 				}
 				swich=true;
+
+				var thumbs=$(".thumbnail");
+				for(ti=0;ti<thumbs.length;ti++){
+					var thumbnail=thumbs.eq(ti);
+					var img="images/thumb_"+thumbnail.attr("id")+".jpg";
+					thumbnail.css("background-image","url('"+img+"')");
+//					thumbnail.find(".suboverlay")[0].onmouseover=function(){}
+					thumbnail.find(".overlay")[0].setAttribute("onMouseOver","blink(this,'over')");
+					thumbnail.find(".overlay")[0].setAttribute("onMouseOut","blink(this,'out')");
+
+					thumbnail.find(".overlay").css("padding",thumbs.width()/3+"px");
+					if(thumbnail.attr("id")=="pool"){thumbnail.find(".overlay").css("padding",thumbs.width()/1.5+10+"px");}
+					thumbnail.find(".overlay").css("padding-left","0px");
+					thumbnail.find(".overlay").css("padding-right","0px");
+				}
+
+				var rack=$(".rack");
+				var picture=rack.find(".picture").eq(0).clone();
+				rack.html("");
+				for(i=0;i<images.length;i++){
+					var thispic=picture.clone();
+					thispic.css("background-image","url('images/thumb_"+images[i]+".jpg')");
+					thispic.find(".title").html(titles[i]);
+					thispic.attr("id","sub_"+images[i]);
+					thispic.attr("onclick","toggleShortGallery(this.id)");
+					rack.append(thispic);
+					var constheight=$("#sub_"+images[i]).outerWidth()*(0.5);
+					$("#sub_"+images[i]).css("padding-top",constheight+"px");
+
+					if(i==0){
+						var defaultWidth=(winwid-($("#"+"sub_"+images[i]).outerWidth()))/2;
+						rack.css("margin-left",defaultWidth+"px");
+					}
+				}
+
+				var tds=$(".reviewLineup").find("td");
+				$(".reviewLineup").css("width",100*Number(tds.length)+"%");
+				tds.css("width",100/tds.length+"%");
 			};
 			$(window).on("load",wr);
 			$(window).resize(wr);
@@ -589,8 +678,8 @@
 						animate=true;
 						wr();
 						unpack(p2,null);
+						middle=true;
 					});
-					
 				}
 				else{
 					pack(p2,function(){
@@ -600,6 +689,8 @@
 						wr();
 						unpack(p1);
 					});
+					console.log("Back to first!");
+					middle=false;
 				}
 			}
 
@@ -608,7 +699,6 @@
 
 			function bannerToggle(point=(((cursor+1)%max != 0)?(cursor+1)%max:3)) {
 				cursor=point;
-				console.log(cursor);
 				$(".active_cursor").attr("class","cursor");
 				$("#cursor"+cursor).attr("class","active_cursor");
 				var table=$(".gallery").find("table");
@@ -631,6 +721,31 @@
 				var rev=$(".reviewLineup");
 				rev.animate({marginLeft:(1-revcursor)*100+"%"},500);
 			}
+
+			function toggleShortGallery(id){
+				var picwidth=$("#"+id).outerWidth();
+				var defaultWidth=(winwid-(picwidth))/2;
+				id=id.split("sub_")[1];
+				var paddingLeft=defaultWidth-((images.indexOf(id))*(picwidth+10));
+				console.log(paddingLeft);
+				$(".rack").animate({marginLeft:paddingLeft+"px"},200);
+			}
+
+			var func=function(){bannerToggle(((cursor)%3)+1);};
+			var middle=false;
+
+			function bannerMarquee(){
+				try{if(!middle)func();}catch(err){}
+				setTimeout(bannerMarquee,3000);
+			}
+
+
+			function pauseGallery(action){
+				if(action=="over"){func=null;}
+				else{func=function(){bannerToggle(((cursor)%3)+1);};}
+			}
+
+			setTimeout(bannerMarquee,3000);
 		</script>
 		</center>
 	</body>
