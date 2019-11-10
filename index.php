@@ -1,6 +1,8 @@
 <?
 	session_start();
 	$usrext=(isset($_SESSION['id'])===true)?true:false;
+
+	$con=mysqli_connect("localhost","theremyt_usr","regnantREG","theremyt_db");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,19 +35,19 @@
 					.gallery .overlay .title{margin-top:0;font-family:playfairBold;text-transform:uppercase;font-size:30px;}
 					.para{width:300px;font-size:12px;text-align:left;text-transform:none;display:inline-block;}
 					.gallery a:link,.gallery a:visited{font-size:12px;color:#fff;}
-					.gallery .banner{display:inline-block;width:100%;height:100%;background-size:100% auto;}
+					.gallery .banner{display:inline-block;width:100%;height:100%;background-size:100% auto;background-position:50% 0%;}
 					.bannerSlide{width:33%;}
 			
-			.galleryNav{padding:10px;position:relative;top:-60px;display:inline-block;}
+			.galleryNav{padding:10px;position:relative;top:-60px;display:none;}
 			.galleryNav .cursor,.galleryNav .active_cursor{height:10px;width:10px;border-radius:10px;background:#fff;float:left;margin-right:5px;border:1px solid transparent;}
 			.galleryNav .active_cursor{background:none;border:1px solid #fff;}
 
 			#banner_2{background-image:url('images/home.jpg');background-size:auto 120%;}
-			#banner_1{background-image:url('images/thumb_banquet.jpg');background-position:0% 100%;}
+			#banner_1{background-image:url('images/Banner.jpg');background-position:0% 100%;}
 			#banner_3{background:#1a1a1a;}
 
 			.comps{margin-top:-35px;}
-				.comps a:link,.comps a:visited,.form button,.writeReview button{border:0;text-transform:uppercase;font-family:montserrat;cursor:pointer;padding:15px;padding-left:40px;padding-right:40px;background:#caa92b;color:#fff;box-shadow:5px 5px 10px rgba(0,0,0,0.5);}
+				.comps a:link,.comps a:visited,.form input[type=submit],.writeReview button{border:0;text-transform:uppercase;font-family:montserrat;cursor:pointer;padding:15px;padding-left:40px;padding-right:40px;background:#caa92b;color:#fff;box-shadow:5px 5px 10px rgba(0,0,0,0.5);}
 			.icons,.footer{padding-top:50px;background:#e9e9e9;width:100%;padding-bottom:20px;}
 			.icons{margin-top:-20px;padding-bottom:50px;color:#7a7a7a;}
 				.icons .title,.icons .regnantexperience span{margin-top:20px;width:400px;font-family:playfair;text-transform:none;font-size:23px;color:#caa92b;}
@@ -70,7 +72,7 @@
 			.shortGallery .picture .info .title{font-weight:bold;font-size:18px;}
 			.shortGallery .picture .info .description{font-size:12px;}
 
-			.reviews{display:block;width:100%;padding-top:50px;padding-bottom:50px;background-image:url('images/reviewBack.jpg');background-size:100% auto;}
+			.reviews{display:none;width:100%;padding-top:50px;padding-bottom:50px;background-image:url('images/reviewBack.jpg');background-size:100% auto;}
 			.revContainer{width:550px;color:#fff;display:inline-block;}
 			.revContainer .img{float:left;height:100%;display:inline-block;}
 			.revContainer .img img{background:#eee;height:auto;width:120px;border-radius:300px;border:5px solid #caa92b;}
@@ -78,7 +80,7 @@
 			.revContainer .content p{width:375px;text-align:left;font-size:14px;text-transform:none;}
 			.revContainer .name,.revContainer .location{color:#caa92b;text-transform:none;}
 
-			.navigator{width:95%;}
+			.navigator{width:95%;display:none;}
 			.navigator div{font-size:80px;font-family:bahnschrift;}
 			.navigator .left{float:left;}
 			.navigator .right{float:right;}
@@ -103,18 +105,22 @@
 				.viewer .left img,.viewer .right img{height:30%;opacity:0.2;}
 				.viewer .closer{position:fixed;top:20px;right:20px;padding:10px;font-size:15px;font-weight:bold;}
 				.closer a:link,.closer a:visited{color:#2a2a2a;}
-				.closer div,.contactContainer .closer div{padding:15px;border-radius:30px;background:#9a9a9a;}
+				.closer div,.contactContainer .closer div,.writeReviewInput .closer input[type=submit]{padding:15px;border-radius:30px;background:#9a9a9a;}
 				.viewer .notice{position:fixed;bottom:0;left:0;width:100%;background:#caa92b;color:#fff;font-size:10px;}
 				.viewer .loader{height:100%;width:100%;vertical-align:middle;display:none;}
 
-			.contactContainer,.signin{position:fixed;height:100%;width:100%;top:0;left:0;background:url('icon_files/back.png');display:none;}
-				.contactContainer .dailogBox,.signin .dailogBox{padding:20px;background:#fff;box-shadow:5px 5px 10px rgba(0,0,0,0.5);width:300px;}
-				.contactContainer .closer div,.signin .closer div{width:100px;}
-				.contactContainer .closer a:link,.contactContainer .closer a:visited,.signin .closer a:link,.signin .closer a:visited{color:#fff;}
-				.contactContainer .title,.signin .title{font-family:playfairBold;font-size:20px;color:#caa92b;}
+			.contactContainer,.signin,.alerter,.writeReviewInput{position:fixed;height:100%;width:100%;top:0;left:0;background:url('icon_files/back.png');display:none;}
+				.contactContainer .dailogBox,.signin .dailogBox,.alerter .dailogBox,.writeReviewInput .dailogBox{padding:20px;background:#fff;box-shadow:5px 5px 10px rgba(0,0,0,0.5);width:300px;}
+				.contactContainer .closer div,.signin .closer div,.alerter .closer div,.writeReviewInput .closer div{width:100px;}
+				.contactContainer .closer a:link,.contactContainer .closer a:visited,.signin .closer a:link,.signin .closer a:visited,.alerter a:link,.alerter a:visited,.writeReviewInput a:link,.writeReviewInput a:visited,.writeReviewInput input[type=submit]{color:#fff;}
+				.contactContainer .title,.signin .title,.alerter .title,.writeReviewInput .title{font-family:playfairBold;font-size:20px;color:#caa92b;}
 				.contactContainer table{margin-top:20px;margin-bottom:20px;font-size:12px;}
-				.contactContainer .cleft,.signin .cleft{font-weight:bold;}
-				.signin .closer{margin-top:20px;}
+				.contactContainer .cleft,.signin .cleft,.alerter .cleft{font-weight:bold;}
+				.signin .closer,.alerter .closer,.writeReviewInput .closer{margin-top:20px;}
+				.writeReviewInput .closer input[type=submit]{border:0;text-transform:uppercase;font-family:montserrat;font-size:14px;margin-right:10px;width:130px;cursor:pointer;}
+				.writeReviewInput input[type=submit],.writeReviewInput .closer div{float:left;}
+				.writeReviewInput .closer{display:inline-block;}
+				.writeReviewInput textarea{border:1px solid #d1d1d1;padding:5px;font-family:montserrat;width:200px;height:100px;}
 
 			#google-signin{border:0;padding:10px;background:#fff;font-family:roboto;font-size:16px;width:254px;color:rgba(0,0,0,0.54);border-radius:5px;box-shadow:1px 1px 2px rgba(0,0,0,0.54);cursor:pointer;}
 			#google-signin img,#fb-signin img{height:20px;margin-right:10px;}
@@ -125,6 +131,9 @@
 			.l1{display:block;}
 			.l2{display:none;}
 			.gallery .overlay .aligner{padding:0;margin:0;text-align:left;}
+
+			.loader{width:100%;height:100%;position:fixed;top:0;left:0;opacity:1;background:#fff;}
+			.loaderimg{height:100%;background:#d1d1d1;}
 
 			@media only screen and (max-width: 632px){
 				.reviews{background-size:auto 150%;background-position:50% 0%;}
@@ -254,7 +263,7 @@
 				</table>
 			</div>
 
-			<div class="galleryNav" align="center">
+			<div class="galleryNav" align="center" onMouseOver="pauseGallery('over')">
 				<a href="#!" onclick="bannerToggle(1)"><div class="active_cursor" id="cursor1"></div></a>
 				<a href="#!" onclick="bannerToggle(2)"><div class="cursor" id="cursor2"></div></a>
 				<a href="#!" onclick="bannerToggle(3)"><div class="cursor" id="cursor3"></div></a>
@@ -350,26 +359,32 @@
 			<div class="reviews" align="center">
 				<table class="reviewLineup" cellspacing="0" cellpadding="0">
 					<tr>
+						<?
+						$revQuery=mysqli_query($con,"select * from reviews where visible=1");
+						$revnum=mysqli_num_rows($revQuery);
+						for($i=0;$i<$revnum;$i++){
+							$res=mysqli_fetch_assoc($revQuery);
+							$uid=$res['uid'];
+							$message=$res['message'];
+							$location=$res['location'];
+
+							$perRes=mysqli_fetch_row(mysqli_query($con,"select name,profilePic from users where id=".$uid));
+							$name=$perRes[0];
+							$picture=$perRes[1];
+						?>
 						<td valign="middle" align="center">
 							<div class="revContainer">
-								<div class="img" align="center"><img src="images/review1.jpg" /></div>
+								<div class="img" align="center"><img src="<? echo $picture; ?>" /></div>
 								<div class="content">
-									<p>"A tailor-made stay just for you. The hotel offers a wider choice of suites and residences than almost any other in the City of the Nawabs."</p>
-									<span class="name">Mollie Cohen</span><br />
-									<span class="location">London, UK</span>
+									<p>"<? echo $message; ?>"</p>
+									<span class="name"><? echo $name; ?></span><br />
+									<span class="location"><? echo $location; ?></span>
 								</div>
 							</div>
 						</td>
-						<td valign="middle" align="center">
-							<div class="revContainer">
-								<div class="img" align="center"><img src="images/review2.jpg" /></div>
-								<div class="content" align="left">
-									<p>"Enrobed in luxury. Amazing experience."</p>
-									<span class="name">Rishabh Kakkar</span><br />
-									<span class="location">Delhi, India</span>
-								</div>
-							</div>
-						</td>
+						<?
+						}
+						?>
 					</tr>
 				</table>
 			</div>
@@ -381,15 +396,17 @@
 
 			<div class="footer" align="center">
 				<div class="form" align="center">
-					<div class="title" align="center">Request more information</div>
-					<div class="fields" align="center">
-						<input type="text" placeholder="First Name *">
-						<input type="text" placeholder="Last Name *">
-						<input type="text" placeholder="Phone">
-						<input type="text" placeholder="Email *">
-						<textarea placeholder="Message *"></textarea>
-					</div>
-					<div class="submit" align="center"><button onclick="submitForm()">Submit</button></div>
+					<form action="forms.php?type=inforequest" method="post" onsubmit="return isValid(this)">
+						<div class="title" align="center">Request more information</div>
+						<div class="fields" align="center">
+							<input type="text" name="fname" placeholder="First Name *">
+							<input type="text" name="lname" placeholder="Last Name *">
+							<input type="text" name="phone" placeholder="Phone">
+							<input type="text" name="email" placeholder="Email *">
+							<textarea placeholder="Message *" name="message"></textarea>
+						</div>
+						<div class="submit" align="center"><input type="submit" value="Submit" /></div>
+					</form>
 				</div>
 
 				<a href="https://instagram.com/the.regnant?igshid=1dl93acvuhcp5"><img src="icon_files/insta.png" /></a>
@@ -454,6 +471,36 @@
 			</div>
 		</div>
 
+		<div class="writeReviewInput" align="center">
+			<div class="dailogBox" align="center">
+				<div class="title" align="center">Write Review</div>
+				<form action="forms.php?type=review" method="post" onsubmit="return isValid(this)">
+					<div class="message" align="center" style="text-transform:none;margin-top:15px;">
+						<textarea placeholder="Type here..." name="review"></textarea>
+					</div>
+					<div class="closer" align="center">
+						<input type="submit" value="Submit" /> <a href="#!" onclick="togglePopup('writeReviewInput','block')"><div>Cancel</div></a>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="alerter" align="center">
+			<div class="dailogBox" align="center">
+				<div class="title" align="center">Message</div>
+				<div class="message" align="center" style="text-transform:none;margin-top:15px;">
+
+				</div>
+				<div class="closer" align="center">
+					<a href="#!" onclick="closeAlert()"><div>OK</div></a>
+				</div>
+			</div>
+		</div>
+
+		<div class="loader" align="center">
+			<img src="loader.gif" class="loadimg" alt="LOADING" />
+		</div>
+
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="anim_lib.js" type="text/javascript"></script>
 
@@ -469,6 +516,8 @@
 					else{next();}
 				}
 			};
+
+			var start=0;
 
 			var userinfo={};
 
@@ -492,6 +541,19 @@
 				}
 			}
 
+			nextalert= ()=>{};
+
+			function alert(message,func=function(){}){
+				$(".alerter").find(".message").html(message);
+				nextalert=func;
+				togglePopup("alerter","block");
+			}
+
+			function closeAlert(){
+				togglePopup("alerter","block");
+				nextalert();
+			}
+
 			var images=['pool','club','meals','banquet','furnish'];
 			var titles=['Rooftop Pool','Club Rooms','Complimentary Meals','Banquet','Executive Rooms'];
 
@@ -506,16 +568,19 @@
 				var overlay=overlayEle.outerHeight();
 				var owidth=overlayEle.outerWidth();
 				var all=$(".gallery").find(".banner");
-				if((owidth/overlay)<1.77){
-					for(ii=0;ii<all.length;ii++){
-						all.eq(ii).css("background-size","auto 100%");
+				if(start==0){
+					if((owidth/overlay)<1.77){
+						for(ii=0;ii<all.length;ii++){
+							all.eq(ii).css("background-size","auto 130%");
+						}
+					}
+					else{
+						for(ii=0;ii<all.length;ii++){
+							all.eq(ii).css("background-size","100% auto");
+						}
 					}
 				}
-				else{
-					for(ii=0;ii<all.length;ii++){
-						all.eq(ii).css("background-size","100% auto");
-					}
-				}
+
 //				var final=(calc<overlay)?overlay:calc;
 				final=overlay;
 				if(animate){
@@ -596,6 +661,11 @@
 				var tds=$(".reviewLineup").find("td");
 				$(".reviewLineup").css("width",100*Number(tds.length)+"%");
 				tds.css("width",100/tds.length+"%");
+
+				if(start==0){$(".loader").animate({opacity:0},200,function(){$(".loader").css("display","none");});}
+				postload();
+				start++;
+
 			};
 			$(window).on("load",wr);
 			$(window).resize(wr);
@@ -672,24 +742,33 @@
 			function exmore(lin){
 				var p1=$("#banner_1").find(".l1");
 				var p2=$("#banner_1").find(".l2");
+				var parent=$("#banner_1").find(".overlay");
+				pad=Number(parent.css("padding").split("px")[0]);
+				console.log(pad);
 				if(p1.css("display")=="block"){
 					pack(p1,function(){
 						p2.css("margin-left","-800px");
+						newh=p2.outerHeight()+(2*pad);
+						console.log(newh);
+						$("#banner_1").animate({height:newh});
 						p2.css("display","block");
 						animate=true;
 						wr();
 						unpack(p2,null);
 						middle=true;
-					});
+					},null);
 				}
 				else{
 					pack(p2,function(){
 						p1.css("margin-left","-800px");
+						newh=p1.outerHeight()+(2*pad);
+						console.log(newh);
+						$("#banner_1").animate({height:newh});
 						p1.css("display","block");
 						animate=true;
 						wr();
-						unpack(p1);
-					});
+						unpack(p1,null);
+					},null);
 					console.log("Back to first!");
 					middle=false;
 				}
@@ -707,7 +786,7 @@
 			}
 
 			var revcursor=1;
-			var max=2;
+			var max=$(".reviewLineup").find("td").length;
 			function rev_prev(){
 				if(revcursor==1){revcursor=max;}
 				else{revcursor--;}
@@ -746,7 +825,48 @@
 				else{func=function(){bannerToggle(((cursor)%3)+1);};}
 			}
 
-			setTimeout(bannerMarquee,3000);
+			// setTimeout(bannerMarquee,3000);
+
+			function isValid(f){
+				var def=false;
+				var panel=$(f);
+				var dets=panel.find("input");
+				var text=panel.find("textarea");
+
+				if(dets.val()=="" || text.val()==""){}
+				else{def=true;}
+
+				if(!def){alert("You left some details in the form");}
+
+				return def;
+			}
+
+			function writeReview(){
+				if(Object.entries(userinfo).length==0){
+					alert("Please login to continue",function(){togglePopup('signin','block')});
+				}
+				else{
+					togglePopup('writeReviewInput','block');
+				}
+			}
+
+			function postload(){
+				var loc=window.location.toString();
+				loc=loc.split("?");
+				loc.splice(0,1);
+				codes=['inforequest=ok','inforequest=notok','reviewRequest=ok','reviewRequest=notok'];
+				messages=[
+					'Your request has been submitted. We will contact you in a while',
+					'You request could not be processed. Fatal input detected',
+					'Your review has been posted. Thank you very much!',
+					'Your review could not be posted. An error occured'
+				];
+				counter=0;
+				codes.map(function(e){
+					if(loc.indexOf(e)!=-1){alert(messages[counter]);}
+					counter++;
+				});
+			}
 		</script>
 		</center>
 	</body>
