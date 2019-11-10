@@ -11,7 +11,7 @@
 		<meta name="content-type" content="text/html:charset=utf-8" />
 		<meta name="description" content="The Regnant home page" />
 		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
-		<link href="icon.ico" rel="icon" type="image/x-icon" />
+		<link href="favicon.png" rel="icon" type="image/x-icon" />
 		<style>
 			@font-face{font-family:montserrat;src:url('fonts/Montserrat-Regular.ttf');}
 			@font-face{font-family:playfair;src:url('fonts/PlayfairDisplay-Regular.ttf');}
@@ -46,7 +46,7 @@
 			#banner_1{background-image:url('images/Banner.jpg');background-position:0% 100%;}
 			#banner_3{background:#1a1a1a;}
 
-			.comps{margin-top:-35px;}
+			.comps{margin-top:-10px;}
 				.comps a:link,.comps a:visited,.form input[type=submit],.writeReview button{border:0;text-transform:uppercase;font-family:montserrat;cursor:pointer;padding:15px;padding-left:40px;padding-right:40px;background:#caa92b;color:#fff;box-shadow:5px 5px 10px rgba(0,0,0,0.5);}
 			.icons,.footer{padding-top:50px;background:#e9e9e9;width:100%;padding-bottom:20px;}
 			.icons{margin-top:-20px;padding-bottom:50px;color:#7a7a7a;}
@@ -132,8 +132,7 @@
 			.l2{display:none;}
 			.gallery .overlay .aligner{padding:0;margin:0;text-align:left;}
 
-			.loader{width:100%;height:100%;position:fixed;top:0;left:0;opacity:1;background:#fff;}
-			.loaderimg{height:100%;background:#d1d1d1;}
+			.loaderDIV{width:100%;height:100%;position:fixed;top:0;left:0;opacity:1;background:#fff;font-size:40px;font-family:playfairBold;color:#caa92b;}
 
 			@media only screen and (max-width: 632px){
 				.reviews{background-size:auto 150%;background-position:50% 0%;}
@@ -497,8 +496,8 @@
 			</div>
 		</div>
 
-		<div class="loader" align="center">
-			<img src="loader.gif" class="loadimg" alt="LOADING" />
+		<div class="loaderDIV" align="center">
+			<div style="opacity:0">Loading</div>
 		</div>
 
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -518,8 +517,10 @@
 			};
 
 			var start=0;
-
 			var userinfo={};
+
+			$(".loaderDIV").css("padding-top",$(window).height()/2-40+"px");
+			$(".loaderDIV").find("div").animate({opacity:1});
 
 			<? if($usrext===true){
 			?>
@@ -662,7 +663,7 @@
 				$(".reviewLineup").css("width",100*Number(tds.length)+"%");
 				tds.css("width",100/tds.length+"%");
 
-				if(start==0){$(".loader").animate({opacity:0},200,function(){$(".loader").css("display","none");});}
+				if(start==0){$(".loaderDIV").animate({opacity:0},200,function(){$(".loaderDIV").css("display","none");});}
 				postload();
 				start++;
 
