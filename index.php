@@ -35,7 +35,7 @@
 					.gallery .overlay .title{margin-top:0;font-family:playfairBold;text-transform:uppercase;font-size:30px;}
 					.para{width:300px;font-size:12px;text-align:left;text-transform:none;display:inline-block;}
 					.gallery a:link,.gallery a:visited{font-size:12px;color:#fff;}
-					.gallery .banner{display:inline-block;width:100%;height:100%;background-size:100% auto;background-position:50% 0%;}
+					.gallery .banner{display:inline-block;width:100%;height:100%;background-size:auto 100%;}
 					.bannerSlide{width:33%;}
 			
 			.galleryNav{padding:10px;position:relative;top:-60px;display:none;}
@@ -43,7 +43,7 @@
 			.galleryNav .active_cursor{background:none;border:1px solid #fff;}
 
 			#banner_2{background-image:url('images/home.jpg');background-size:auto 120%;}
-			#banner_1{background-image:url('images/Banner.jpg');background-position:0% 100%;}
+			#banner_1{background-image:url('images/Banner.jpg');background-size:auto 100%;background-position:0% 100%;}
 			#banner_3{background:#1a1a1a;}
 
 			.comps{margin-top:-10px;}
@@ -210,7 +210,7 @@
 								<div class="overlay" align="left">
 									<div class="l1" style="margin:0;padding:0">
 										<div class="title" id="title_1" align="left">
-											Experience the best <br /> banquet hall of <br /> the city.
+											Enrobed in luxury<br />Coming soon
 										</div>
 										<div class="link" align="left">
 											<a href="#!" onclick="exmore()">Explore more &gt;</a>
@@ -569,8 +569,9 @@
 				var overlay=overlayEle.outerHeight();
 				var owidth=overlayEle.outerWidth();
 				var all=$(".gallery").find(".banner");
+				var aspect=1.777;
 				if(start==0){
-					if((owidth/overlay)<1.77){
+					if((owidth/(overlay+156))<aspect){
 						for(ii=0;ii<all.length;ii++){
 							all.eq(ii).css("background-size","auto 130%");
 						}
@@ -579,6 +580,14 @@
 						for(ii=0;ii<all.length;ii++){
 							all.eq(ii).css("background-size","100% auto");
 						}
+					}
+
+					var l_lim=owidth/overlay;
+					var u_lim=owidth/(overlay+156);
+
+					if(l_lim>aspect && u_lim<aspect){
+						var newheight=l_lim/aspect*100;
+						all.css("background-size","auto "+newheight+"%");
 					}
 				}
 
