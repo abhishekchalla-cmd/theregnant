@@ -99,13 +99,14 @@
 
 			.viewer{width:100%;height:100%;position:fixed;top:0;left:0;background:linear-gradient(90deg,#1a1a1a,#4a4a4a);display:none;}
 				.viewer .left,.viewer .canvas,.viewer .right{display:table-cell;height:100%;vertical-align:middle;}
-				.viewer .left,.viewer .right{width:8%;font-size:30px;font-weight:bold;background:#fff;}
+				.viewer .left,.viewer .right{width:8%;font-size:30px;font-weight:bold;}
 				.viewer .canvas{width:84%;}
 				.viewer .canvas img{max-height:95%;max-width:100%;}
-				.viewer .left img,.viewer .right img{height:30%;opacity:0.2;}
-				.viewer .closer{position:fixed;top:20px;right:20px;padding:10px;font-size:15px;font-weight:bold;}
+				.viewer .left img,.viewer .right img{height:30%;opacity:0.5;}
+				.viewer .closer{position:fixed;top:0px;right:0px;padding:20px;font-size:15px;font-weight:bold;}
 				.closer a:link,.closer a:visited{color:#2a2a2a;}
-				.closer div,.contactContainer .closer div,.writeReviewInput .closer input[type=submit]{padding:15px;border-radius:30px;background:#9a9a9a;}
+				.closer img{width:50px;}
+				.contactContainer .closer div,.writeReviewInput .closer input[type=submit],.signin .closer div{padding:15px;border-radius:30px;background:#9a9a9a;}
 				.viewer .notice{position:fixed;bottom:0;left:0;width:100%;background:#caa92b;color:#fff;font-size:10px;}
 				.viewer .loader{height:100%;width:100%;vertical-align:middle;display:none;}
 
@@ -149,7 +150,9 @@
 				.gallery .overlay{padding-top:50px;padding-bottom:50px;}
 				.gallery .overlay .title,.gallery .overlay .para,.gallery .overlay .link{margin:10px;text-align:center;}
 				.gallery .overlay .title{font-size:20px;}
-				.viewer .left,.viewer .right{width:15%;display:none;}
+				.viewer .left,.viewer .right{top:33%;width:20%;opacity:0;position:fixed;}
+				.viewer .left{left:0;height:100%;}
+				.viewer .right{right:0;}
 				.viewer .canvas{width:100%;}
 				.viewer .canvas img{width:100%;}
 				.footer{padding-top:60px;padding-bottom:30px;}
@@ -432,9 +435,9 @@
 			</div>
 			<div class="right" align="center"><a href="#!" onclick="next()"><img src="icon_files/right.png" /></a></div>
 
-			<div class="notice" align="center"><div style="margin:10px">The images shown are a virtual representation of the actual sites</div></div>
+			<!-- <div class="notice" align="center"><div style="margin:10px">The images shown are a virtual representation of the actual sites</div></div> -->
 
-			<div class="closer" align="center"><a href="#!" onclick="togglePopup('viewer','table')"><div>CLOSE</div></a></div>
+			<div class="closer" align="center"><a href="#!" onclick="togglePopup('viewer','table')"><div><img src="icon_files/closer.png" /></div></a></div>
 		</div>
 
 		<div class="contactContainer" align="center">
@@ -672,6 +675,25 @@
 				$(".reviewLineup").css("width",100*Number(tds.length)+"%");
 				tds.css("width",100/tds.length+"%");
 
+				var galLeft=$(".viewer").find(".left");
+				var galRight=$(".viewer").find(".right");
+				if(winwid<633){
+					galLeft[0].setAttribute("onclick","prev()");
+					galRight[0].setAttribute("onclick","next()");
+					galLeft.find("a")[0].setAttribute("onclick","");
+					galRight.find("a")[0].setAttribute("onclick","");
+					galLeft.css("opacity","0");
+					galRight.css("opacity","0");
+				}
+				else{
+					galLeft[0].setAttribute("onclick","");
+					galRight[0].setAttribute("onclick","");
+					galLeft.find("a")[0].setAttribute("onclick","prev()");
+					galRight.find("a")[0].setAttribute("onclick","next()");
+					galLeft.css("opacity","1");
+					galRight.css("opacity","1");
+				}
+
 				if(start==0){$(".loaderDIV").animate({opacity:0},200,function(){$(".loaderDIV").css("display","none");});}
 				postload();
 				start++;
@@ -680,18 +702,56 @@
 			$(window).on("load",wr);
 			$(window).resize(wr);
 
-			var last=1;
-			var max=8;
+			var list=[];
+			var last=0;
+			var xh=new XMLHttpRequest();
+			var reqcounter=0;
+			xh.onreadystatechange=function(){
+				console.log(xh.readyState+"||"+xh.status);
+				if(xh.readyState==4 && xh.status==200){
+					var result=xh.responseText;
+					list=result.split(/\n/g);
+				}
+				else{
+					if(xh.readyState==4){
+						if(reqcounter<4){
+							reqcounter++;
+							setTimeout(openrequest,200);
+						}
+						else{
+							alert("Sorry! we were unable to load the gallery");
+						}
+					}
+				}
+			};
+			var openrequest=()=>{
+				xh.open("GET","gallery.txt",true);
+				xh.send();
+			};
+			openrequest();
+
+			function checkArrowFeedback(orient){
+				pan=$(".viewer");
+				if(pan.find(".left").css("opacity")=="0"){
+					var target=pan.find("."+((orient=="left")?"left":"right"));
+					console.log(target.outerWidth());
+					target.animate({opacity:1},200,()=>{
+						target.animate({opacity:0},200);
+					});
+				}
+			}
 
 			function prev(){
-				if(last<=1){last=max;}
+				if(last<=0){last=list.length-1;}
 				else{last--;}
+				checkArrowFeedback("left");
 				render();
 			}
 
 			function next(){
-				if(last>=max){last=1;}
+				if(last>=(list.length-1)){last=0;}
 				else{last++;}
+				checkArrowFeedback("right");
 				render();
 			}
 
@@ -707,7 +767,7 @@
 					lo.find(".loadGIF").css("display","none");
 					lo.animate({opacity:1},100,function(){
 						setTimeout(function(){lo.find(".loadGIF").css("display","block")},200);
-						sc.attr("src","images/slide ("+last+").jpg");
+						sc.attr("src","images/"+list[last]);
 						if(!pressed){
 							sc.on("load",function(){
 								lo.animate({opacity:0},100,function(){

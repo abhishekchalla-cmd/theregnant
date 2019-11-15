@@ -324,7 +324,7 @@
 						<td align="left">Visibility</td>
 					</tr>
 					<?
-						$req=mysqli_query($con,"select * from reviews");
+						$req=mysqli_query($con,"select * from reviews order by date desc");
 						for($i=0;$i<mysqli_num_rows($req);$i++){
 							$row=mysqli_fetch_assoc($req);
 							$uid=$row['uid'];
