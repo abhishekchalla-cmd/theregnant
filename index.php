@@ -106,7 +106,7 @@
 				.viewer .closer{position:fixed;top:0px;right:0px;padding:20px;font-size:15px;font-weight:bold;}
 				.closer a:link,.closer a:visited{color:#2a2a2a;}
 				.closer img{width:50px;}
-				.contactContainer .closer div,.writeReviewInput .closer input[type=submit],.signin .closer div{padding:15px;border-radius:30px;background:#9a9a9a;}
+				.contactContainer .closer div,.writeReviewInput .closer input[type=submit],.signin .closer div,.alerter .closer div{padding:15px;border-radius:30px;background:#9a9a9a;}
 				.viewer .notice{position:fixed;bottom:0;left:0;width:100%;background:#caa92b;color:#fff;font-size:10px;}
 				.viewer .loader{height:100%;width:100%;vertical-align:middle;display:none;}
 
