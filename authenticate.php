@@ -59,6 +59,14 @@
 					$str=$token . "<>" . $uq['name'] . "<>" . $uq['profilePic'] . "<>" . $uq['email'];
 					echo $str;
 				}
+				elseif($request=="logout"){
+					$uq=mysqli_query($con,"delete from tokens where token='" . $token . "'");
+					if($uq){echo "ok";}
+					else{echo "error";}
+				}
+				else{
+					echo "error";
+				}
 			}
 		}
 	}
